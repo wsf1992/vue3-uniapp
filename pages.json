@@ -12,8 +12,17 @@
 		}
 	},
 	"pages": [
-		// pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+		    "path" : "pages/test/test",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+		// pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		,{
 			"path": "pages/tabBar/component/component",
 			"style": {
 				"navigationBarTitleText": "内置组件",
@@ -332,7 +341,16 @@
 			}
 		}
 		// #endif
-	],
+        ,{
+            "path" : "pages/tabBar/text/text",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"subPackages": [{
 			"root": "pages/API",
 			"pages": [{
@@ -1311,7 +1329,13 @@
 		"selectedColor": "#007AFF",
 		"borderStyle": "black",
 		"backgroundColor": "#F8F8F8",
-		"list": [{
+		"list": [
+			{
+				"pagePath": "pages/tabBar/test/test",
+				"iconPath": "static/component.png",
+				"selectedIconPath": "static/componentHL.png",
+				"text": "测试"
+			},{
 				"pagePath": "pages/tabBar/component/component",
 				"iconPath": "static/component.png",
 				"selectedIconPath": "static/componentHL.png",

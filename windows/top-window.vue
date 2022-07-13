@@ -28,6 +28,7 @@
 </template>
 
 <script>
+	import { mapMutations } from 'vuex'
 	export default {
 		data() {
 			return {
@@ -35,7 +36,8 @@
 					component: 0,
 					API: 1,
 					extUI: 2,
-					template: 3
+					template: 3,
+					test: 4
 				},
 				current: 0,
 				indexPage: [{
@@ -50,6 +52,10 @@
 				}, {
 					tabBar: '/pages/tabBar/template/template',
 					index: '/pages/template/nav-button/nav-button'
+				},
+				{
+					tabBar: '/pages/tabBar/test/test',
+					index: '/pages/test/test'
 				}]
 			}
 		},
@@ -57,6 +63,7 @@
 			$route: {
 				immediate: true,
 				handler(newRoute) {
+					console.log(666, newRoute)
 					const width = uni.getSystemInfoSync().screenWidth
 					if (width >= 768) {
 						let path = newRoute.path
@@ -70,6 +77,7 @@
 						this.current = this.selected[comp]
 						for (const item of this.indexPage) {
 							if (path === item.tabBar) {
+								console.log(555, item.index)
 								uni.redirectTo({
 									url: item.index
 								})
@@ -81,10 +89,18 @@
 		},
 		mounted() {},
 		methods: {
+			...mapMutations(['setMatchLeftWindow']),
 			toSecondMenu(e) {
+				console.log(111, e)
 				const activeTabBar = '/' + e.pagePath
 				for (const item of this.indexPage) {
 					if (activeTabBar === item.tabBar) {
+						console.log(222, item.index)
+						if(item.index === '/pages/test/test') {
+							this.setMatchLeftWindow(false)
+						} else {
+							this.setMatchLeftWindow(true)
+						}
 						uni.redirectTo({
 							url: item.index
 						})

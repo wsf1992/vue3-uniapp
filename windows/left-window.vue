@@ -25,7 +25,8 @@
 					'component',
 					'API',
 					'extUI',
-					'template'
+					'template',
+					'test'
 				],
 				isPC: false
 			}
@@ -119,6 +120,7 @@
 			...mapMutations(['setMatchLeftWindow', 'setActive', 'setLeftWinActive']),
 
 			handlerRoute(newRoute) {
+				console.log(33, newRoute)
 				if (this.isPC) {
 					if (newRoute.path === '/') {
 						// uni.redirectTo({
