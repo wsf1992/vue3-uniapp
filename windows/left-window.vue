@@ -25,8 +25,7 @@
 					'component',
 					'API',
 					'extUI',
-					'template',
-					'test'
+					'template'
 				],
 				isPC: false
 			}

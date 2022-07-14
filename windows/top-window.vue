@@ -52,8 +52,7 @@
 				}, {
 					tabBar: '/pages/tabBar/template/template',
 					index: '/pages/template/nav-button/nav-button'
-				},
-				{
+				}, {
 					tabBar: '/pages/tabBar/test/test',
 					index: '/pages/test/test'
 				}]
@@ -96,11 +95,6 @@
 				for (const item of this.indexPage) {
 					if (activeTabBar === item.tabBar) {
 						console.log(222, item.index)
-						if(item.index === '/pages/test/test') {
-							this.setMatchLeftWindow(false)
-						} else {
-							this.setMatchLeftWindow(true)
-						}
 						uni.redirectTo({
 							url: item.index
 						})
