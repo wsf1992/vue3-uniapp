@@ -53,7 +53,7 @@
 					tabBar: '/pages/tabBar/template/template',
 					index: '/pages/template/nav-button/nav-button'
 				}, {
-					tabBar: '/pages/tabBar/test/test',
+					tabBar: '/pages/test/test',
 					index: '/pages/test/test'
 				}]
 			}
@@ -94,10 +94,17 @@
 				const activeTabBar = '/' + e.pagePath
 				for (const item of this.indexPage) {
 					if (activeTabBar === item.tabBar) {
-						console.log(222, item.index)
-						uni.redirectTo({
-							url: item.index
-						})
+						if(item.index === '/pages/test/test') {
+							console.log(222, item.index)
+							uni.switchTab({
+								url: item.index
+							})
+						} else {
+							uni.redirectTo({
+								url: item.index
+							})
+						}
+						
 					}
 				}
 			}

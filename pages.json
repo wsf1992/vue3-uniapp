@@ -1353,7 +1353,7 @@
 				"selectedIconPath": "static/templateHL.png",
 				"text": "模板"
 			}, {
-				"pagePath": "pages/tabBar/test/test",
+				"pagePath": "pages/test/test",
 				"iconPath": "static/component.png",
 				"selectedIconPath": "static/componentHL.png",
 				"text": "测试"

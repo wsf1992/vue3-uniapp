@@ -1,11 +1,15 @@
 <template>
 	<view>
-		1231312
+		<btn>456</btn>
 	</view>
 </template>
 
 <script>
+	import btn from './component/btn/btn.vue'
 	export default {
+		components: {
+			btn
+		},
 		data() {
 			return {
 				
