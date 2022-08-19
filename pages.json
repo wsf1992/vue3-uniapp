@@ -361,6 +361,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/city/city",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"subPackages": [{
 			"root": "pages/API",
