@@ -1,18 +1,22 @@
 <template>
 	<view class="w-flex-column" id="box">
-		<view class="uni-flex w-flex-jusify-between w-header">
-			<view>ele.me</view>
-			<view>登陆|注册</view>
-		</view>
-		<view class="w-flex-column mar-t-10 mar-b-10">
-			<view class="uni-flex w-flex-jusify-between w-city-nav">
-				<view class="f-s-13 c-666">当前定位城市：</view>
-				<view class="f-s-12 f-w-900 c-9f9f9f">定位不准时，请在城市列表中选择</view>
-			</view>
-			<view class="uni-flex w-flex-jusify-between w-city-tips">
-				<view class="f-s-18 c-3190e8">北京</view>
-				<view class="f-s-18 c-999">></view>
-			</view>
+		<uni-nav-bar fixed backgroundColor="#3190e8" color="#fff" @clickTitle="clickHeaderTitle">
+			<block v-slot:left><text class="f-s-14">ele.me</text></block>
+			<block v-slot:right>
+				<text class="f-s-14">登录</text>
+				|
+				<text class="f-s-14">注册</text>
+			</block>
+		</uni-nav-bar>
+		<uni-section class="bg-color-unset" title="当前定位城市：" titleColor="#666">
+			<template v-slot:right>
+				<text class="f-s-12 f-w-900 c-9f9f9f">定位不准时，请在城市列表中选择</text>
+			</template>
+		</uni-section>
+
+		<view class="uni-flex w-flex-jusify-between w-city-tips">
+			<view class="f-s-18 c-3190e8">北京</view>
+			<view class="f-s-18 c-999">></view>
 		</view>
 		<view class="w-flex-column mar-b-10">
 			<view class="city-title">热门城市</view>
@@ -79,6 +83,11 @@ export default {
 				}
 			});
 		},
+		clickHeaderTitle() {
+			uni.pageScrollTo({
+				scrollTop: 0
+			});
+		},
 		jump(href) {
 			uni.createSelectorQuery()
 				.select('#box')
@@ -101,7 +110,7 @@ export default {
 								}
 							}
 							uni.pageScrollTo({
-								scrollTop: sctop
+								scrollTop: sctop - 44
 							});
 						})
 						.exec();
@@ -117,18 +126,6 @@ export default {
 </script>
 
 <style>
-.w-header {
-	height: 48px;
-	background-color: #3190e8;
-	color: #fff;
-	align-items: center;
-	padding: 0 10px;
-}
-.w-city-nav {
-	height: 36px;
-	margin: 0 11px;
-	align-items: center;
-}
 .w-city-tips {
 	height: 41px;
 	padding: 0 11px;
@@ -168,5 +165,8 @@ export default {
 	color: #666;
 	background-color: #e4e4e4;
 	opacity: 0.5;
+}
+.bg-color-unset {
+	background-color: unset;
 }
 </style>

@@ -1,19 +1,13 @@
 <template>
-	<view>
-
-	</view>
+	<view></view>
 </template>
 
 <script lang="ts">
-	export default {
-		data() {
-			return {
-				
-			};
-		}
+export default {
+	data() {
+		return {};
 	}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
