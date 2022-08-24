@@ -8,32 +8,38 @@
 				<text class="f-s-14">注册</text>
 			</block>
 		</uni-nav-bar>
-		<uni-section class="bg-color-unset" title="当前定位城市：" titleColor="#666">
+		<uni-section class="" title="当前定位城市：" titleColor="#666">
 			<template v-slot:right>
 				<text class="f-s-12 f-w-900 c-9f9f9f">定位不准时，请在城市列表中选择</text>
 			</template>
 		</uni-section>
-
-		<view class="uni-flex w-flex-jusify-between w-city-tips">
-			<view class="f-s-18 c-3190e8">北京</view>
-			<view class="f-s-18 c-999">></view>
-		</view>
+		<uni-section class="cur-city" title="北京" titleFontSize="18px" titleColor="#3190e8">
+			<template v-slot:right>
+				<text class="c-9f9f9f">></text>
+			</template>
+		</uni-section>
 		<view class="w-flex-column mar-b-10">
-			<view class="city-title">热门城市</view>
-			<view class="uni-flex" style="flex-wrap:wrap;overflow:hidden;">
-				<view class="city-item" v-for="item in hotList" :key="item.id">{{ item.name }}</view>
-			</view>
+			<uni-section class="border-t" title="热门城市" titleFontSize="14px" titleColor="#666"></uni-section>
+			<uni-grid :column="4" borderColor="#e4e4e4" :square="false">
+				<uni-grid-item v-for="item in hotList" :key="item.id" class="city-item">
+					<text class="ellipsis">{{ item.name }}</text>
+				</uni-grid-item>
+			</uni-grid>
 		</view>
 		<template v-for="item in groupList" :key="item.title">
 			<view class="w-flex-column mar-b-10">
-				<view class="city-title" :name="item.title" :id="item.title">{{ item.title }}</view>
-				<view class="uni-flex" style="flex-wrap:wrap;overflow:hidden;">
-					<view class="city-item" v-for="(obj, i) in item.items" :key="i">{{ obj.name }}</view>
-				</view>
+				<uni-section class="border-t" :id="item.title" :title="item.title" titleFontSize="14px" titleColor="#666"></uni-section>
+				<uni-grid :column="4" borderColor="#e4e4e4" :square="false">
+					<uni-grid-item v-for="(item, i) in item.items" :key="i" class="city-item">
+						<text class="ellipsis">{{ item.name }}</text>
+					</uni-grid-item>
+				</uni-grid>
 			</view>
 		</template>
 		<view class="anchor-list">
-			<view v-for="item in indexList" :key="item" @click.prevent="jump(item)">{{ item }}</view>
+			<cover-view>
+				<view v-for="item in indexList" :key="item" @click.prevent="jump(item)">{{ item }}</view>
+			</cover-view>
 		</view>
 	</view>
 </template>
@@ -126,13 +132,6 @@ export default {
 </script>
 
 <style>
-.w-city-tips {
-	height: 41px;
-	padding: 0 11px;
-	align-items: center;
-	border-top: 1px solid #e4e4e4;
-	border-bottom: 2px solid #e4e4e4;
-}
 .city-title {
 	height: 36px;
 	line-height: 36px;
@@ -142,17 +141,11 @@ export default {
 }
 .city-item {
 	box-sizing: border-box;
-	height: 43px;
+	height: 43px !important;
 	line-height: 43px;
-	flex: 0 0 25%;
 	text-align: center;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	border-bottom: 1px solid #e4e4e4;
-	border-right: 1px solid #e4e4e4;
-}
-.city-item:nth-child(4n) {
-	border-right-width: 0px;
+
+	background-color: #fff;
 }
 .anchor-list {
 	position: fixed;
@@ -165,8 +158,22 @@ export default {
 	color: #666;
 	background-color: #e4e4e4;
 	opacity: 0.5;
+	z-index: 99;
 }
 .bg-color-unset {
 	background-color: unset;
+}
+.border-t {
+	border-top: 1px solid #e4e4e4;
+}
+.cur-city {
+	border-top: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+	margin-bottom: 10px;
+}
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 </style>
