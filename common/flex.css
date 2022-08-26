@@ -1,8 +1,12 @@
-
 .w-flex-column {
 	display: flex;
 	flex-direction: column;
 }
+
 .w-flex-jusify-between {
 	justify-content: space-between;
+}
+
+.w-flex-cross-center {
+	align-items: center
 }

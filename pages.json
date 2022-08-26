@@ -364,6 +364,13 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "密码登录",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
 	"subPackages": [{

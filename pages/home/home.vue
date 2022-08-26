@@ -2,9 +2,7 @@
 	<view class="w-flex-column" id="box">
 		<uni-nav-bar fixed backgroundColor="#3190e8" color="#fff" @clickTitle="clickHeaderTitle" status-bar title="ele.me" leftWidth="120px" rightWidth="120px">
 			<template v-slot:left>
-				<text class="f-s-14">登录</text>
-				|
-				<text class="f-s-14">注册</text>
+				<navigator url="/pages/login/login"><text class="f-s-14">登录 | 注册</text></navigator>
 			</template>
 		</uni-nav-bar>
 
