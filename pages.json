@@ -14,26 +14,24 @@
 	"pages": [
 		// pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-		    "path" : "pages/home/home",
-		    "style" :                                                                                    
-		    {
+			"path": "pages/home/home",
+			"style": {
 				"navigationBarBackgroundColor": "#3190e8",
-		        "navigationBarTitleText": "",
-		        "enablePullDownRefresh": false
-		    }
-		    
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+
 		},
 		{
-		    "path" : "pages/test/test",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "",
-		        "enablePullDownRefresh": false,
+			"path": "pages/test/test",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
 				"leftWindow": false
-		    }
-		    
-		}
-		,{
+			}
+
+		}, {
 			"path": "pages/tabBar/component/component",
 			"style": {
 				"navigationBarTitleText": "内置组件",
@@ -352,25 +350,22 @@
 			}
 		}
 		// #endif
-        ,{
-            "path" : "pages/tabBar/text/text",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/city/city",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+		, {
+			"path": "pages/tabBar/text/text",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/city/city",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	],
 	"subPackages": [{
 			"root": "pages/API",
 			"pages": [{
@@ -1330,7 +1325,7 @@
 		"pageOrientation": "portrait",
 		"navigationBarTitleText": "Hello uniapp",
 		"navigationBarTextStyle": "white",
-		"navigationBarBackgroundColor": "#007AFF",
+		"navigationBarBackgroundColor": "#3190e8",
 		"backgroundColor": "#F8F8F8",
 		"backgroundColorTop": "#F4F5F6",
 		"backgroundColorBottom": "#F4F5F6",
@@ -1339,8 +1334,8 @@
 		},
 		"h5": {
 			"maxWidth": 1190,
-			"navigationBarTextStyle": "black",
-			"navigationBarBackgroundColor": "#F1F1F1"
+			"navigationBarTextStyle": "white",
+			"navigationBarBackgroundColor": "#3190e8"
 		}
 
 	},
@@ -1349,8 +1344,7 @@
 		"selectedColor": "#007AFF",
 		"borderStyle": "black",
 		"backgroundColor": "#F8F8F8",
-		"list": [
-			{
+		"list": [{
 				"pagePath": "pages/tabBar/component/component",
 				"iconPath": "static/component.png",
 				"selectedIconPath": "static/componentHL.png",

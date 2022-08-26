@@ -1,19 +1,19 @@
 <template>
 	<view class="w-flex-column" id="box">
-		<uni-nav-bar fixed backgroundColor="#3190e8" color="#fff" @clickTitle="clickHeaderTitle">
-			<block v-slot:left><text class="f-s-14">ele.me</text></block>
-			<block v-slot:right>
+		<uni-nav-bar fixed backgroundColor="#3190e8" color="#fff" @clickTitle="clickHeaderTitle" status-bar title="ele.me" leftWidth="120px" rightWidth="120px">
+			<template v-slot:left>
 				<text class="f-s-14">登录</text>
 				|
 				<text class="f-s-14">注册</text>
-			</block>
+			</template>
 		</uni-nav-bar>
+
 		<uni-section class="" title="当前定位城市：" titleColor="#666">
 			<template v-slot:right>
 				<text class="f-s-12 f-w-900 c-9f9f9f">定位不准时，请在城市列表中选择</text>
 			</template>
 		</uni-section>
-		<uni-section class="cur-city" title="北京" titleFontSize="18px" titleColor="#3190e8">
+		<uni-section class="cur-city" :title="curCity.name" titleFontSize="18px" titleColor="#3190e8" @click="toCity(curCity.id)">
 			<template v-slot:right>
 				<text class="c-9f9f9f">></text>
 			</template>
@@ -21,25 +21,31 @@
 		<view class="w-flex-column mar-b-10">
 			<uni-section class="border-t" title="热门城市" titleFontSize="14px" titleColor="#666"></uni-section>
 			<uni-grid :column="4" borderColor="#e4e4e4" :square="false">
-				<uni-grid-item v-for="item in hotList" :key="item.id" class="city-item">
-					<text class="ellipsis">{{ item.name }}</text>
-				</uni-grid-item>
+				<template v-for="item in hotList" :key="item.id">
+					<uni-grid-item class="city-item">
+						<navigator :url="`/pages/city/city?id=${item.id}`" class="ellipsis">
+							<text>{{ item.name }}</text>
+						</navigator>
+					</uni-grid-item>
+				</template>
 			</uni-grid>
 		</view>
 		<template v-for="item in groupList" :key="item.title">
 			<view class="w-flex-column mar-b-10">
 				<uni-section class="border-t" :id="item.title" :title="item.title" titleFontSize="14px" titleColor="#666"></uni-section>
 				<uni-grid :column="4" borderColor="#e4e4e4" :square="false">
-					<uni-grid-item v-for="(item, i) in item.items" :key="i" class="city-item">
-						<text class="ellipsis">{{ item.name }}</text>
-					</uni-grid-item>
+					<template v-for="(item, i) in item.items" :key="i">
+						<uni-grid-item class="city-item">
+							<navigator :url="`/pages/city/city?id=${item.id}`" class="ellipsis">
+								<text>{{ item.name }}</text>
+							</navigator>
+						</uni-grid-item>
+					</template>
 				</uni-grid>
 			</view>
 		</template>
 		<view class="anchor-list">
-			<cover-view>
-				<view v-for="item in indexList" :key="item" @click.prevent="jump(item)">{{ item }}</view>
-			</cover-view>
+			<view v-for="item in indexList" :key="item" @click.prevent="jump(item)">{{ item }}</view>
 		</view>
 	</view>
 </template>
@@ -50,10 +56,25 @@ export default {
 		return {
 			hotList: [],
 			groupList: [],
-			indexList: []
+			indexList: [],
+			curCity: ''
 		};
 	},
 	methods: {
+		getGuessCity() {
+			uni.request({
+				url: 'http://120.48.75.81:8001/v1/cities',
+				data: {
+					type: 'guess'
+				},
+				success: res => {
+					this.curCity = res.data;
+				},
+				fail: err => {
+					console.log('获取当前城市失败', err);
+				}
+			});
+		},
 		getHot() {
 			uni.request({
 				url: 'http://120.48.75.81:8001/v1/cities',
@@ -116,17 +137,23 @@ export default {
 								}
 							}
 							uni.pageScrollTo({
-								scrollTop: sctop - 44
+								scrollTop: sctop - 88
 							});
 						})
 						.exec();
 				})
 				.exec();
+		},
+		toCity(id) {
+			uni.navigateTo({
+				url: `/pages/city/city?id=${id}`
+			});
 		}
 	},
 	created() {
 		this.getHot();
 		this.getGroupCity();
+		this.getGuessCity();
 	}
 };
 </script>
@@ -144,7 +171,6 @@ export default {
 	height: 43px !important;
 	line-height: 43px;
 	text-align: center;
-
 	background-color: #fff;
 }
 .anchor-list {
