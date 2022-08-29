@@ -146,9 +146,25 @@ export default {
 			uni.navigateTo({
 				url: `/pages/city/city?id=${id}`
 			});
+		},
+		getUserInfo() {
+			const user_id = uni.getStorageSync('user_id')
+			uni.request({
+				url: 'http://120.48.75.81:8001/v1/user',
+				data: {
+					user_id = uni.
+				},
+				success: res => {
+					console.log(123, res)
+				},
+				fail: err => {
+					console.log('获取用户信息失败', err);
+				}
+			});
 		}
 	},
 	created() {
+		this.getUserInfo()
 		this.getHot();
 		this.getGroupCity();
 		this.getGuessCity();
