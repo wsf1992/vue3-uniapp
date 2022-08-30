@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { getCaptcha, login } from '@/common/fetch.js';
 export default {
 	data() {
 		return {
@@ -45,16 +46,8 @@ export default {
 	},
 	methods: {
 		getCaptcha() {
-			uni.request({
-				url: 'http://120.48.75.81:8001/v1/captchas',
-				method: 'POST',
-				data: {
-					type: 'group'
-				},
-				success: res => {
-					console.log(123, res);
-					this.captcha = res.data.code;
-				}
+			getCaptcha().then(res => {
+				this.captcha = res.data.code;
 			});
 		},
 		login() {
@@ -70,22 +63,34 @@ export default {
 				this.popTxt = '请输入验证码';
 				return this.openPop();
 			}
-			uni.request({
-				url: 'http://120.48.75.81:8001/v2/login',
-				method: 'POST',
-				data: this.form,
-				success: res => {
-					console.log(123, res);
-					if (!res.data.user_id) {
-						// 登录不成功
-						if (res.data.type === 'ERROR_CAPTCHA') this.getCaptcha();
-						this.popTxt = res.data.message;
-						return this.openPop();
-					} else {
-						uni.navigateTo({
-							url: '/pages/home/home'
-						});
-					}
+			// uni.request({
+			// 	url: 'http://120.48.75.81:8001/v2/login',
+			// 	method: 'POST',
+			// 	data: this.form,
+			// 	success: res => {
+			// 		console.log(123, res);
+			// 		if (!res.data.user_id) {
+			// 			// 登录不成功
+			// 			if (res.data.type === 'ERROR_CAPTCHA') this.getCaptcha();
+			// 			this.popTxt = res.data.message;
+			// 			return this.openPop();
+			// 		} else {
+			// 			uni.navigateTo({
+			// 				url: '/pages/home/home'
+			// 			});
+			// 		}
+			// 	}
+			// });
+			login(this.form).then(res => {
+				if (!res.data.user_id) {
+					// 登录不成功
+					if (res.data.type === 'ERROR_CAPTCHA') this.getCaptcha();
+					this.popTxt = res.data.message;
+					return this.openPop();
+				} else {
+					uni.navigateTo({
+						url: '/pages/home/home'
+					});
 				}
 			});
 		},

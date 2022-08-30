@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { getCity, citySearch } from '@/common/fetch.js';
 export default {
 	onLoad: function(option) {
 		this.cityId = option.id;
@@ -38,43 +39,30 @@ export default {
 	methods: {
 		getCity() {
 			uni.showNavigationBarLoading();
-			uni.request({
-				url: `http://120.48.75.81:8001/v1/cities/${this.cityId}`,
-				data: {},
-				success: res => {
+			getCity({ cityId: this.cityId })
+				.then(res => {
 					this.cityObj = res.data;
 					uni.setNavigationBarTitle({
 						title: this.cityObj.name
 					});
-				},
-				fail: err => {
-					console.log('获取当前城市失败', err);
-				},
-				complete: () => {
+				})
+				.finally(() => {
 					uni.hideNavigationBarLoading();
-				}
-			});
+				});
 		},
 		search() {
 			this.searchLoading = true;
 			if (this.searchValue === '') return (this.sList = []);
-			uni.request({
-				url: 'http://120.48.75.81:8001/v1/pois',
-				data: {
-					type: 'search',
-					city_id: this.cityId,
-					keyword: this.searchValue
-				},
-				success: res => {
+			citySearch({
+				city_id: this.cityId,
+				keyword: this.searchValue
+			})
+				.then(res => {
 					this.sList = res.data || [];
-				},
-				fail: err => {
-					console.log('获取城市地址失败', err);
-				},
-				complete: () => {
+				})
+				.finally(() => {
 					this.searchLoading = false;
-				}
-			});
+				});
 		}
 	},
 	created() {

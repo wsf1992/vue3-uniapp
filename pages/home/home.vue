@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { getGuessCity, getHot, getGroupCity, getUserInfo } from '@/common/fetch.js';
 export default {
 	data() {
 		return {
@@ -60,52 +61,32 @@ export default {
 	},
 	methods: {
 		getGuessCity() {
-			uni.request({
-				url: 'http://120.48.75.81:8001/v1/cities',
-				data: {
-					type: 'guess'
-				},
-				success: res => {
-					this.curCity = res.data;
-				},
-				fail: err => {
-					console.log('获取当前城市失败', err);
-				}
+			getGuessCity().then(res => {
+				this.curCity = res.data;
 			});
 		},
 		getHot() {
-			uni.request({
-				url: 'http://120.48.75.81:8001/v1/cities',
-				data: {
-					type: 'hot'
-				},
-				success: res => {
-					this.hotList = res.data;
-				},
-				fail: err => {
-					console.log('获取热门城市失败', err);
-				}
+			getHot().then(res => {
+				this.hotList = res.data;
 			});
 		},
 		getGroupCity() {
-			uni.request({
-				url: 'http://120.48.75.81:8001/v1/cities',
-				data: {
-					type: 'group'
-				},
-				success: res => {
-					for (let key in res.data) {
-						this.groupList.push({ title: key, items: res.data[key] });
-						this.indexList.push(key);
-					}
-					this.groupList.sort(function(a, b) {
-						return a.title.charCodeAt(0) - b.title.charCodeAt(0);
-					});
-					this.indexList.sort();
-				},
-				fail: err => {
-					console.log('获取城市分组失败', err);
+			console.log('开始请求', new Date().getTime());
+			getGroupCity().then(res => {
+				console.log('数据获取成功', new Date().getTime());
+				let group = [],
+					index = [];
+				for (let key in res.data) {
+					group.push({ title: key, items: res.data[key] });
+					index.push(key);
 				}
+				group.sort(function(a, b) {
+					return a.title.charCodeAt(0) - b.title.charCodeAt(0);
+				});
+				this.groupList = group;
+				console.log('数据处理完成', new Date().getTime());
+				index.sort();
+				this.index = index;
 			});
 		},
 		clickHeaderTitle() {
@@ -148,23 +129,14 @@ export default {
 			});
 		},
 		getUserInfo() {
-			const user_id = uni.getStorageSync('user_id')
-			uni.request({
-				url: 'http://120.48.75.81:8001/v1/user',
-				data: {
-					user_id = uni.
-				},
-				success: res => {
-					console.log(123, res)
-				},
-				fail: err => {
-					console.log('获取用户信息失败', err);
-				}
+			const user_id = uni.getStorageSync('user_id');
+			getUserInfo(user_id).then(res => {
+				console.log(123, res);
 			});
 		}
 	},
 	created() {
-		this.getUserInfo()
+		this.getUserInfo();
 		this.getHot();
 		this.getGroupCity();
 		this.getGuessCity();
