@@ -1,10 +1,17 @@
 <template>
 	<view>
 		<view class="login-box">
-			<uni-easyinput :inputBorder="false" placeholder="账号" class="input-content border-b font-16" v-model="form.username"></uni-easyinput>
+			<uni-easyinput :inputBorder="false" placeholder="账号" clearSize="18px" class="input-content border-b font-16" v-model="form.username"></uni-easyinput>
 			<uni-easyinput :inputBorder="false" placeholder="密码" class="input-content border-b font-16" type="password" v-model="form.password"></uni-easyinput>
 			<view class="uni-flex w-flex-cross-center">
-				<uni-easyinput type="number" :inputBorder="false" placeholder="验证码" class="input-content font-16 flex-auto" v-model="form.captcha_code"></uni-easyinput>
+				<uni-easyinput
+					type="number"
+					:inputBorder="false"
+					placeholder="验证码"
+					clearSize="18px"
+					class="input-content font-16 flex-auto"
+					v-model="form.captcha_code"
+				></uni-easyinput>
 				<image :src="captcha" mode="scaleToFill" class="captcha"></image>
 				<view class="change-cap" @click="getCaptcha">
 					<text>看不清</text>
@@ -63,24 +70,6 @@ export default {
 				this.popTxt = '请输入验证码';
 				return this.openPop();
 			}
-			// uni.request({
-			// 	url: 'http://120.48.75.81:8001/v2/login',
-			// 	method: 'POST',
-			// 	data: this.form,
-			// 	success: res => {
-			// 		console.log(123, res);
-			// 		if (!res.data.user_id) {
-			// 			// 登录不成功
-			// 			if (res.data.type === 'ERROR_CAPTCHA') this.getCaptcha();
-			// 			this.popTxt = res.data.message;
-			// 			return this.openPop();
-			// 		} else {
-			// 			uni.navigateTo({
-			// 				url: '/pages/home/home'
-			// 			});
-			// 		}
-			// 	}
-			// });
 			login(this.form).then(res => {
 				if (!res.data.user_id) {
 					// 登录不成功
@@ -88,9 +77,7 @@ export default {
 					this.popTxt = res.data.message;
 					return this.openPop();
 				} else {
-					uni.navigateTo({
-						url: '/pages/home/home'
-					});
+					uni.navigateBack();
 				}
 			});
 		},
@@ -123,7 +110,8 @@ export default {
 	height: 40px;
 }
 .change-cap {
-	margin: 0 10px;
+	padding: 0 10px;
+	width: 65px;
 }
 .color-3b95e9 {
 	color: #3b95e9;

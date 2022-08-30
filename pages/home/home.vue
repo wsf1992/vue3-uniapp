@@ -2,7 +2,8 @@
 	<view class="w-flex-column" id="box">
 		<uni-nav-bar fixed backgroundColor="#3190e8" color="#fff" @clickTitle="clickHeaderTitle" status-bar title="ele.me" leftWidth="120px" rightWidth="120px">
 			<template v-slot:left>
-				<navigator url="/pages/login/login"><text class="f-s-14">登录 | 注册</text></navigator>
+				<navigator url="/pages/login/login" v-if="user_id"><uni-icons type="person" size="25px"></uni-icons></navigator>
+				<navigator url="/pages/login/login" v-else><text class="f-s-14">登录 | 注册</text></navigator>
 			</template>
 		</uni-nav-bar>
 
@@ -56,7 +57,8 @@ export default {
 			hotList: [],
 			groupList: [],
 			indexList: [],
-			curCity: ''
+			curCity: '',
+			user_id: ''
 		};
 	},
 	methods: {
@@ -132,6 +134,7 @@ export default {
 			const user_id = uni.getStorageSync('user_id');
 			getUserInfo(user_id).then(res => {
 				console.log(123, res);
+				if (res.data.user_id) this.user_id = res.data.user_id;
 			});
 		}
 	},
