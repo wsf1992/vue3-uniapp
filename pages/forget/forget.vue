@@ -2,7 +2,9 @@
 	<view>
 		<view class="login-box">
 			<uni-easyinput :inputBorder="false" placeholder="账号" clearSize="18px" class="input-content border-b font-16" v-model="form.username"></uni-easyinput>
-			<uni-easyinput :inputBorder="false" placeholder="密码" class="input-content border-b font-16" type="password" v-model="form.password"></uni-easyinput>
+			<uni-easyinput :inputBorder="false" placeholder="旧密码" class="input-content border-b font-16" type="password" v-model="form.password"></uni-easyinput>
+			<uni-easyinput :inputBorder="false" placeholder="请输入新密码" class="input-content border-b font-16" type="password" v-model="form.password"></uni-easyinput>
+			<uni-easyinput :inputBorder="false" placeholder="请确认密码" class="input-content border-b font-16" type="password" v-model="form.password"></uni-easyinput>
 			<view class="uni-flex w-flex-cross-center">
 				<uni-easyinput
 					type="number"
@@ -20,12 +22,8 @@
 				</view>
 			</view>
 		</view>
-		<view><text class="login-tips">温馨提示：未注册过的账号，登录时将自动注册</text></view>
-		<view><text class="login-tips">注册过的用户可凭账号密码登录</text></view>
-		<button type="primary" class="login-btn" @click="login">登录</button>
-		<view class="">
-			<navigator url="/pages/forget/forget"><text class="forget-pass">重置密码?</text></navigator>
-		</view>
+
+		<button type="primary" class="login-btn" @click="login">确认修改</button>
 		<uni-popup ref="popup" :mask-click="false">
 			<view class="pop-box w-flex-column w-flex-cross-center">
 				<uni-icons type="info" size="100" color="#f8cb86"></uni-icons>
@@ -128,7 +126,7 @@ export default {
 	padding: 8px 15px;
 }
 .login-btn {
-	margin: 0 10px;
+	margin: 20px 10px;
 	background-color: #4cd964;
 }
 .forget-pass {
