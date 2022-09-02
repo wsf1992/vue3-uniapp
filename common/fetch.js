@@ -34,3 +34,7 @@ export const getCaptcha = () => api.post('/v1/captchas', {
 export const login = (params) => api.post('/v2/login', {
 	...params
 })
+
+// forget
+
+export const changePassword = (params) => api.post('/v2/changepassword', params)

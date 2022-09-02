@@ -2,9 +2,9 @@
 	<view>
 		<view class="login-box">
 			<uni-easyinput :inputBorder="false" placeholder="账号" clearSize="18px" class="input-content border-b font-16" v-model="form.username"></uni-easyinput>
-			<uni-easyinput :inputBorder="false" placeholder="旧密码" class="input-content border-b font-16" type="password" v-model="form.password"></uni-easyinput>
-			<uni-easyinput :inputBorder="false" placeholder="请输入新密码" class="input-content border-b font-16" type="password" v-model="form.password"></uni-easyinput>
-			<uni-easyinput :inputBorder="false" placeholder="请确认密码" class="input-content border-b font-16" type="password" v-model="form.password"></uni-easyinput>
+			<uni-easyinput :inputBorder="false" placeholder="旧密码" class="input-content border-b font-16" type="password" v-model="form.oldpassWord"></uni-easyinput>
+			<uni-easyinput :inputBorder="false" placeholder="请输入新密码" class="input-content border-b font-16" type="password" v-model="form.newpassword"></uni-easyinput>
+			<uni-easyinput :inputBorder="false" placeholder="请确认密码" class="input-content border-b font-16" type="password" v-model="form.confirmpassword"></uni-easyinput>
 			<view class="uni-flex w-flex-cross-center">
 				<uni-easyinput
 					type="number"
@@ -35,14 +35,16 @@
 </template>
 
 <script>
-import { getCaptcha, login } from '@/common/fetch.js';
+import { getCaptcha, changePassword } from '@/common/fetch.js';
 export default {
 	data() {
 		return {
 			captcha: '',
 			form: {
 				username: '',
-				password: '',
+				oldpassWord: '',
+				newpassword: '',
+				confirmpassword: '',
 				captcha_code: ''
 			},
 			popTxt: ''
@@ -56,24 +58,34 @@ export default {
 		},
 		login() {
 			if (this.form.username === '') {
-				this.popTxt = '请输入手机号/邮箱/用户名';
+				this.popTxt = '请输入正确的账号';
+				return this.openPop();
+			} else if (this.form.oldpassWord === '') {
+				this.popTxt = '请输入旧密码';
+				return this.openPop();
+			} else if (this.form.newpassword === '') {
+				this.popTxt = '请输入新密码';
+				return this.openPop();
+			} else if (this.form.confirmpassword === '') {
+				this.popTxt = '请输确认密码';
+				return this.openPop();
+			} else if (this.form.newpassword !== this.form.confirmpassword) {
+				this.popTxt = '两次输入的密码不一致';
+				return this.openPop();
+			} else if (this.form.captcha_code === '') {
+				this.popTxt = '请输验证码';
 				return this.openPop();
 			}
-			if (this.form.password === '') {
-				this.popTxt = '请输入密码';
-				return this.openPop();
-			}
-			if (this.form.captcha_code === '') {
-				this.popTxt = '请输入验证码';
-				return this.openPop();
-			}
-			login(this.form).then(res => {
-				if (!res.data.user_id) {
+			changePassword(this.form).then(res => {
+				console.log(123456, res);
+				if (res.data.message) {
 					// 登录不成功
 					if (res.data.type === 'ERROR_CAPTCHA') this.getCaptcha();
 					this.popTxt = res.data.message;
 					return this.openPop();
 				} else {
+					this.popTxt = res.data.success;
+					return this.openPop();
 					uni.navigateBack();
 				}
 			});
