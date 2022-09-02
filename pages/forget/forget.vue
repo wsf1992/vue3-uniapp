@@ -24,13 +24,13 @@
 		</view>
 
 		<button type="primary" class="login-btn" @click="login">确认修改</button>
-		<uni-popup ref="popup" :mask-click="false">
+		<!-- 		<uni-popup ref="popup" :mask-click="false">
 			<view class="pop-box w-flex-column w-flex-cross-center">
 				<uni-icons type="info" size="100" color="#f8cb86"></uni-icons>
 				<text>{{ popTxt }}</text>
 			</view>
 			<button type="primary" class="pop-btn" @click="$refs.popup.close()">确定</button>
-		</uni-popup>
+		</uni-popup> -->
 	</view>
 </template>
 
@@ -59,6 +59,7 @@ export default {
 		login() {
 			if (this.form.username === '') {
 				this.popTxt = '请输入正确的账号';
+				return this.$tipPop('123');
 				return this.openPop();
 			} else if (this.form.oldpassWord === '') {
 				this.popTxt = '请输入旧密码';
@@ -92,9 +93,6 @@ export default {
 		},
 		openPop() {
 			this.$refs.popup.open('center');
-		},
-		close() {
-			this.$refs.popup.close();
 		}
 	},
 	created() {
@@ -150,14 +148,5 @@ export default {
 }
 .flex-auto {
 	flex: 1 1 auto;
-}
-.pop-box {
-	padding: 10px 30px;
-	background-color: #fff;
-	border-radius: 6px 6px 2px 2px;
-}
-.pop-btn {
-	width: 100%;
-	background-color: #4cd964;
 }
 </style>
