@@ -24,13 +24,6 @@
 		</view>
 
 		<button type="primary" class="login-btn" @click="login">确认修改</button>
-		<!-- 		<uni-popup ref="popup" :mask-click="false">
-			<view class="pop-box w-flex-column w-flex-cross-center">
-				<uni-icons type="info" size="100" color="#f8cb86"></uni-icons>
-				<text>{{ popTxt }}</text>
-			</view>
-			<button type="primary" class="pop-btn" @click="$refs.popup.close()">确定</button>
-		</uni-popup> -->
 	</view>
 </template>
 
@@ -47,7 +40,6 @@ export default {
 				confirmpassword: '',
 				captcha_code: ''
 			},
-			popTxt: ''
 		};
 	},
 	methods: {
@@ -57,37 +49,30 @@ export default {
 			});
 		},
 		login() {
+			let popTxt = ''
 			if (this.form.username === '') {
-				this.popTxt = '请输入正确的账号';
-				return this.$tipPop('123');
-				return this.openPop();
+				popTxt = '请输入正确的账号';
 			} else if (this.form.oldpassWord === '') {
-				this.popTxt = '请输入旧密码';
-				return this.openPop();
+				popTxt = '请输入旧密码';
 			} else if (this.form.newpassword === '') {
-				this.popTxt = '请输入新密码';
-				return this.openPop();
+				popTxt = '请输入新密码';
 			} else if (this.form.confirmpassword === '') {
-				this.popTxt = '请输确认密码';
-				return this.openPop();
+				popTxt = '请输确认密码';
 			} else if (this.form.newpassword !== this.form.confirmpassword) {
-				this.popTxt = '两次输入的密码不一致';
-				return this.openPop();
+				popTxt = '两次输入的密码不一致';
 			} else if (this.form.captcha_code === '') {
-				this.popTxt = '请输验证码';
-				return this.openPop();
+				popTxt = '请输验证码';
 			}
+			if(popTxt) return this.$tipPop(popTxt);
 			changePassword(this.form).then(res => {
-				console.log(123456, res);
 				if (res.data.message) {
 					// 登录不成功
 					if (res.data.type === 'ERROR_CAPTCHA') this.getCaptcha();
-					this.popTxt = res.data.message;
-					return this.openPop();
+					return this.$tipPop(res.data.message);
 				} else {
-					this.popTxt = res.data.success;
-					return this.openPop();
-					uni.navigateBack();
+					this.$tipPop(res.data.success).then(() => {
+						uni.navigateBack();
+					})
 				}
 			});
 		},

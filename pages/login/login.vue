@@ -26,13 +26,6 @@
 		<view class="">
 			<navigator url="/pages/forget/forget"><text class="forget-pass">重置密码?</text></navigator>
 		</view>
-		<uni-popup ref="popup" :mask-click="false">
-			<view class="pop-box w-flex-column w-flex-cross-center">
-				<uni-icons type="info" size="100" color="#f8cb86"></uni-icons>
-				<text>{{ popTxt }}</text>
-			</view>
-			<button type="primary" class="pop-btn" @click="$refs.popup.close()">确定</button>
-		</uni-popup>
 	</view>
 </template>
 
@@ -47,7 +40,6 @@ export default {
 				password: '',
 				captcha_code: ''
 			},
-			popTxt: ''
 		};
 	},
 	methods: {
@@ -57,34 +49,26 @@ export default {
 			});
 		},
 		login() {
+			const popTxt = ''
 			if (this.form.username === '') {
-				this.popTxt = '请输入手机号/邮箱/用户名';
-				return this.openPop();
+				popTxt = '请输入手机号/邮箱/用户名';
 			}
 			if (this.form.password === '') {
-				this.popTxt = '请输入密码';
-				return this.openPop();
+				popTxt = '请输入密码';
 			}
 			if (this.form.captcha_code === '') {
-				this.popTxt = '请输入验证码';
-				return this.openPop();
+				popTxt = '请输入验证码';
 			}
+			if(popTxt) return this.$tipPop(popTxt)
 			login(this.form).then(res => {
 				if (!res.data.user_id) {
 					// 登录不成功
 					if (res.data.type === 'ERROR_CAPTCHA') this.getCaptcha();
-					this.popTxt = res.data.message;
-					return this.openPop();
+					return this.$tipPop(res.data.message)
 				} else {
 					uni.navigateBack();
 				}
 			});
-		},
-		openPop() {
-			this.$refs.popup.open('center');
-		},
-		close() {
-			this.$refs.popup.close();
 		}
 	},
 	created() {
