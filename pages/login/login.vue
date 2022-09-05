@@ -25,7 +25,7 @@
 	</view>
 </template>
 
-<script setup lang="ts">
+<script setup>
 	import {
 		getCaptcha,
 		login,
@@ -35,8 +35,7 @@
 		ref,
 		onMounted,
 		reactive,
-		getCurrentInstance,
-		ComponentInternalInstance
+		getCurrentInstance
 	} from 'vue'
 
 	const captcha = ref("")
@@ -52,27 +51,25 @@
 		captcha_code: '',
 	})
 
+	const {
+		proxy
+	} = getCurrentInstance()
+
 	function loginHandle() {
-		const {
-			proxy
-		} = getCurrentInstance() as ComponentInternalInstance
-		console.log(45, app)
 		let popTxt = ''
 		if (form.username === '') {
 			popTxt = '请输入手机号/邮箱/用户名';
-		}
-		if (form.password === '') {
+		} else if (form.password === '') {
 			popTxt = '请输入密码';
-		}
-		if (form.captcha_code === '') {
+		} else if (form.captcha_code === '') {
 			popTxt = '请输入验证码';
 		}
-		if (popTxt) return proxy?.$tipPop(popTxt)
+		if (popTxt) return proxy.$tipPop(popTxt)
 		login(form).then(res => {
 			if (!res.data.user_id) {
 				// 登录不成功
 				if (res.data.type === 'ERROR_CAPTCHA') getCapt();
-				return proxy?.$tipPop(res.data.message)
+				return proxy.$tipPop(res.data.message)
 			} else {
 				uni.navigateBack();
 			}
