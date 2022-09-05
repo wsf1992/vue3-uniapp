@@ -8,25 +8,21 @@
 	</uni-popup>
 </template>
 
-<script>
-export default {
-	data() {
-		return {
-			callback: null
-		};
-	},
-	props: {
-		popTxt: String
-	},
-	methods: {
-		openPop() {
-			this.$refs.popup.open('center');
-		},
-		submit() {
-			this.callback();
-		}
-	}
-};
+<script setup>
+import { ref, defineProps } from 'vue';
+
+const callback = ref(null);
+
+defineProps({
+	popTxt: String
+});
+
+function openPop() {
+	this.$refs.popup.open('center');
+}
+function submit() {
+	this.callback();
+}
 </script>
 
 <style scoped>
