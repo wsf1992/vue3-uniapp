@@ -1,55 +1,52 @@
 import {
-	createVNode,
-	render
+	createApp
 } from 'vue'
 import TipsPop from './tipsPop.vue'
 
-let vNode = null,
-	mountNode = null
+let cApp = null,
+	mountDom = null,
+	instance = null
 
 // 创建实例
 function initInstance(propsData) {
-	vNode = createVNode(TipsPop, propsData)
-	mountNode = document.createElement('div')
-	render(vNode, mountNode)
+	cApp = createApp(TipsPop, propsData)
+	mountDom = document.createElement('div')
+	instance = cApp.mount(mountDom)
 }
 
 function mergeOpt({
-	text
+	popTxt
 }) {
 	return {
-		text
+		popTxt
 	}
 }
 
 function showDialog() {
-	document.body.appendChild(mountNode)
-	setTimeout(() => {
-		vNode.type.methods.openPop()
-	})
+	document.body.appendChild(mountDom)
+	instance.openPop()
 }
 
-export default function(opstions = {}) {
-	const propsData = mergeOpt(opstions)
+function unmount() {
+	cApp.unmount()
+	mountDom = null
+	instance = null
+}
 
-	if (!vNode) {
+export default function(tips) {
+	const propsData = mergeOpt({
+		popTxt: tips
+	})
+
+	if (!instance) {
 		initInstance(propsData)
 	}
-
 	showDialog()
 
 	return new Promise((resolve, reject) => {
-		vNode.callback = action => {
-			if (action === 'ok') {
-				resolve()
-			} else {
-				reject()
-			}
-			setTimeout(() => {
-				vNode.$destroy()
-				vNode = null
-				mountNode = null
-			})
+		instance.callback = () => {
+			resolve()
+			unmount()
 		}
 	})
 }

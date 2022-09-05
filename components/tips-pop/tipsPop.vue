@@ -22,12 +22,8 @@ export default {
 		openPop() {
 			this.$refs.popup.open('center');
 		},
-		close() {
-			this.$refs.popup.close();
-		},
 		submit() {
-			this.close();
-			this.callback('ok');
+			this.callback();
 		}
 	}
 };
