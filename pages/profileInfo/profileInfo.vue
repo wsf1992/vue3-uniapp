@@ -29,6 +29,7 @@
 		</uni-section>
 		<button class="logout" type="warn" @click="logout">退出登录</button>
 		<tips-pop ref="tipspop"></tips-pop>
+		<dialog-pop ref="dialog"></dialog-pop>
 	</view>
 </template>
 
@@ -49,6 +50,7 @@
 		avatar: '../../static/user.jpg'
 	})
 	const tipspop = ref()
+	const dialog = ref()
 
 	function getUser() {
 		const local_user_id = uni.getStorageSync('user_id');
@@ -61,9 +63,14 @@
 	}
 
 	function logout() {
-		console.log(21321321)
-		signout().then(res => {
-			if (res.data.status === 1) uni.navigateBack()
+		dialog.value.openPop({
+			'popText': '是否退出登录',
+			'canlText': '再等等',
+			'saveText': '退出登录',
+		}).then(() => {
+			signout().then(res => {
+				if (res.data.status === 1) uni.navigateBack()
+			})
 		})
 	}
 

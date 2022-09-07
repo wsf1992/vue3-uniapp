@@ -3,10 +3,11 @@
 		<uni-nav-bar fixed backgroundColor="#3190e8" color="#fff" @clickTitle="clickHeaderTitle" status-bar
 			title="ele.me" leftWidth="120px" rightWidth="120px">
 			<template v-slot:left>
-				<navigator url="/pages/tabBar/profile/profile" v-if="user_id" open-type="switchTab">
+				<navigator url="/pages/tabBar/profile/profile" v-if="user_id" open-type="switchTab" hover-class="none">
 					<uni-icons type="person" size="25px" color="#fff"></uni-icons>
 				</navigator>
-				<navigator url="/pages/login/login" v-else><text class="f-s-14">登录 | 注册</text></navigator>
+				<navigator url="/pages/login/login" v-else hover-class="none"><text class="f-s-14">登录 | 注册</text>
+				</navigator>
 			</template>
 		</uni-nav-bar>
 
