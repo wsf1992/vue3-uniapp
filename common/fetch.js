@@ -36,5 +36,10 @@ export const login = (params) => api.post('/v2/login', {
 })
 
 // forget
+export const changePassword = params => api.post('/v2/changepassword', params)
 
-export const changePassword = (params) => api.post('/v2/changepassword', params)
+// 
+export const signout = () => api.get('/v2/signout')
+
+// 
+export const avatar = file => api.uploadFile('/eus/v1/users/24/avatar', file)

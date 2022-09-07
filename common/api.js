@@ -15,6 +15,12 @@ class Api {
 	post(url, params) {
 		return this.baseRequest(url, 'POST', params)
 	}
-
+	uploadFile(url, file) {
+		return uni.uploadFile({
+			url: `${this.baseUrl}${url}`,
+			name: 'file',
+			filePath: file,
+		})
+	}
 }
 export default new Api()
