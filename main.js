@@ -1,7 +1,6 @@
 import App from './App'
 import store from './store'
 import 'weapp-cookie'
-import tipsPop from '@/components/tips-pop/main.js'
 // #ifndef VUE3
 import Vue from 'vue'
 Vue.config.productionTip = false
@@ -27,7 +26,6 @@ import {
 export function createApp() {
 	const app = createSSRApp(App)
 	app.use(store)
-	app.use(tipsPop)
 	app.config.globalProperties.$adpid = "1111111111"
 	app.config.globalProperties.$backgroundAudioData = {
 		playing: false,
