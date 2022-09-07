@@ -3,10 +3,19 @@
 	flex-direction: column;
 }
 
+.w-flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
 .w-flex-jusify-between {
 	justify-content: space-between;
 }
 
 .w-flex-cross-center {
 	align-items: center
+}
+
+.w-flex-auto {
+	flex: 1 1 auto;
 }

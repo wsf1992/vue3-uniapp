@@ -1,0 +1,65 @@
+{
+  "id": "3538565",
+  "name": "no name",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5027",
+      "name": "手机",
+      "font_class": "shouji",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1287717",
+      "name": "指南针",
+      "font_class": "zhinanzhen",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "2076282",
+      "name": " 订单",
+      "font_class": "dingdan",
+      "unicode": "e897",
+      "unicode_decimal": 59543
+    },
+    {
+      "icon_id": "11488248",
+      "name": "Customer management-fill",
+      "font_class": "Customermanagement-fill",
+      "unicode": "e77c",
+      "unicode_decimal": 59260
+    },
+    {
+      "icon_id": "18166598",
+      "name": "饿了么",
+      "font_class": "elment",
+      "unicode": "e8ca",
+      "unicode_decimal": 59594
+    },
+    {
+      "icon_id": "10130844",
+      "name": "可回收-塑料类",
+      "font_class": "kehuishou-suliaolei",
+      "unicode": "abc",
+      "unicode_decimal": 2748
+    },
+    {
+      "icon_id": "30697759",
+      "name": "AI-系统管理",
+      "font_class": "abcdclass",
+      "unicode": "abcd",
+      "unicode_decimal": 43981
+    },
+    {
+      "icon_id": "30697760",
+      "name": "元数据-单选",
+      "font_class": "efclass",
+      "unicode": "ef",
+      "unicode_decimal": 239
+    }
+  ]
+}

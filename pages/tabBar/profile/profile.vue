@@ -1,22 +1,9 @@
 <template>
-	<view>
-		<text>我的</text>
-	</view>
+	<view><user></user></view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			
-		}
-	}
+<script setup>
+import user from './components/user.vue';
 </script>
 
-<style>
-
-</style>
+<style></style>

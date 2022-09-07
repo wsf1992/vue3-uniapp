@@ -85,6 +85,7 @@ onMounted(() => {
 }
 
 .border-b {
+	display: block;
 	border-bottom: 1px solid #f1f1f1;
 }
 
@@ -100,7 +101,8 @@ onMounted(() => {
 
 .change-cap {
 	padding: 0 10px;
-	width: 65px;
+	width: 60px;
+	text-align: end;
 }
 
 .color-3b95e9 {

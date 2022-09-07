@@ -1,0 +1,51 @@
+@font-face {
+	font-family: "iconfont";
+	/* Project id 3538565 */
+	src: url('./iconfont.eot?t=1662542900065');
+	/* IE9 */
+	src: url('./iconfont.eot?t=1662542900065#iefix') format('embedded-opentype'),
+		/* IE6-IE8 */
+		url('./iconfont.woff2?t=1662542900065') format('woff2'),
+		url('./iconfont.ttf?t=1662542900065') format('truetype'),
+		url('./iconfont.svg?t=1662542900065#iconfont') format('svg');
+}
+
+.iconfont {
+	font-family: "iconfont" !important;
+	font-size: 16px;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shouji:before {
+	content: "\e600";
+}
+
+.icon-zhinanzhen:before {
+	content: "\e60c";
+}
+
+.icon-dingdan:before {
+	content: "\e897";
+}
+
+.icon-Customermanagement-fill:before {
+	content: "\e77c";
+}
+
+.icon-elment:before {
+	content: "\e8ca";
+}
+
+.icon-kehuishou-suliaolei:before {
+	content: "\abc";
+}
+
+.icon-abcdclass:before {
+	content: "\abcd";
+}
+
+.icon-efclass:before {
+	content: "\ef";
+}
