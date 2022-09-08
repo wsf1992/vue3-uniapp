@@ -1,21 +1,24 @@
 .c-fff {
-	color: #fff;
+	color: $color-fff;
+}
+.c-666 {
+	color: $color-666;
+}
+
+.c-999 {
+	color: $color-999;
 }
 
 .c-9f9f9f {
 	color: #9f9f9f;
 }
 
-.c-666 {
-	color: #666;
-}
-
-.c-999 {
-	color: #999;
-}
-
 .c-3190e8 {
 	color: #3190e8;
+}
+
+.f-s-12 {
+	font-size: 12px;
 }
 
 .f-s-13 {
@@ -24,10 +27,6 @@
 
 .f-s-14 {
 	font-size: 14px;
-}
-
-.f-s-12 {
-	font-size: 12px;
 }
 
 .f-s-18 {
@@ -39,11 +38,11 @@
 }
 
 .mar-t-10 {
-	margin-top: 10px;
+	margin-top: $px-10;
 }
 
 .mar-b-10 {
-	margin-bottom: 10px;
+	margin-bottom: $px-10;
 }
 
 .text-center {
@@ -51,7 +50,7 @@
 }
 
 .mar-r-10 {
-	margin-right: 10px;
+	margin-right: $px-10;
 }
 
 .mar-r-20 {

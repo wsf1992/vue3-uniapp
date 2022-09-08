@@ -70,17 +70,17 @@ onLoad(option => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .city-form {
-	background-color: #fff;
-	border-top: 1px solid #e4e4e4;
-	border-bottom: 1px solid #e4e4e4;
-	margin-top: 10px;
-	padding-bottom: 10px;
+	background-color: $color-fff;
+	border-top: 1px solid $color-e4;
+	border-bottom: 1px solid $color-e4;
+	margin-top: $px-10;
+	padding-bottom: $px-10;
 }
 
 .save-btn {
-	margin: 0 10px;
+	margin: 0 $px-10;
 	height: 35px;
 	line-height: 35px;
 }

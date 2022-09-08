@@ -79,7 +79,7 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .input-content >>> .uni-easyinput__content {
 	height: 55px;
 }
@@ -91,7 +91,7 @@ onMounted(() => {
 
 .login-box {
 	margin-top: 15px;
-	background-color: #fff;
+	background-color: $color-fff;
 }
 
 .captcha {
@@ -100,7 +100,7 @@ onMounted(() => {
 }
 
 .change-cap {
-	padding: 0 10px;
+	padding: 0 $px-10;
 	width: 60px;
 	text-align: end;
 }
@@ -122,14 +122,14 @@ onMounted(() => {
 }
 
 .login-btn {
-	margin: 20px 10px;
+	margin: $px-20 $px-10;
 	background-color: #4cd964;
 }
 
 .forget-pass {
 	display: block;
-	margin-top: 20px;
-	margin-right: 10px;
+	margin-top: $px-20;
+	margin-right: $px-10;
 	color: #3b95e9;
 	text-align: right;
 }
