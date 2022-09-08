@@ -60,7 +60,7 @@
 	});
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.tips-text {
 		font-size: 20px;
 		color: #575757;

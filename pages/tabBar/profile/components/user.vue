@@ -1,6 +1,6 @@
 <template>
 	<view class="w-flex-row w-flex-cross-center container" @click="jump">
-		<image src="../../../../static/user.jpg" mode="" class="user"></image>
+		<image :src="`http://120.48.75.81:8001/img/${user.avatar}`" mode="" class="user"></image>
 		<view class="w-flex-auto w-flex-column mar-l-12">
 			<text class="user-name">{{ user.username }}</text>
 			<view class="w-flex-row w-flex-cross-center">
@@ -14,45 +14,46 @@
 </template>
 
 <script setup>
-const props = defineProps({
-	user: Object
-});
+	const props = defineProps({
+		user: Object
+	});
 
-function jump() {
-	if (props.user.user_id) {
-		uni.navigateTo({
-			url: '/pages/profileInfo/profileInfo'
-		});
-	} else {
-		uni.navigateTo({
-			url: '/pages/login/login'
-		});
+	function jump() {
+		if (props.user.user_id) {
+			uni.navigateTo({
+				url: '/pages/profileInfo/profileInfo'
+			});
+		} else {
+			uni.navigateTo({
+				url: '/pages/login/login'
+			});
+	
 	}
 }
 </script>
 
 <style scoped lang="scss">
-.container {
-	/* border-top: 1px solid #fff; */
-	padding: 18px 16px;
-	background-color: #3190e8;
-	color: #fff;
-}
+	.container {
+		/* border-top: 1px solid #fff; */
+		padding: 18px 16px;
+		background-color: #3190e8;
+		color: #fff;
+	}
 
-.user {
-	width: 65px;
-	height: 65px;
-	border-radius: 50%;
-}
+	.user {
+		width: 65px;
+		height: 65px;
+		border-radius: 50%;
+	}
 
-.user-name {
-	font-size: 20px;
-	font-weight: 700;
-	margin-bottom: 4px;
-}
+	.user-name {
+		font-size: 20px;
+		font-weight: 700;
+		margin-bottom: 4px;
+	}
 
-.icon-shouji {
-	vertical-align: middle;
-	margin-right: 5px;
-}
+	.icon-shouji {
+		vertical-align: middle;
+		margin-right: 5px;
+	}
 </style>

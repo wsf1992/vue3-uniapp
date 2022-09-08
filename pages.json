@@ -88,16 +88,37 @@
 			}
 
 		}, {
-			"path": "pages/setusername/setusername",
+			"path": "pages/profileInfo/setusername/setusername",
 			"style": {
 				"navigationBarTitleText": "修改用户名",
 				"enablePullDownRefresh": false
 			}
 
 		}, {
-			"path": "pages/address/address",
+			"path": "pages/profileInfo/address/address",
 			"style": {
 				"navigationBarTitleText": "编辑地址",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/vipcard/vipcard",
+			"style": {
+				"navigationBarTitleText": "会员中心",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/service/service",
+			"style": {
+				"navigationBarTitleText": "服务中心",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/download/download",
+			"style": {
+				"navigationBarTitleText": "下载",
 				"enablePullDownRefresh": false
 			}
 

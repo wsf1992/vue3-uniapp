@@ -9,44 +9,48 @@
 </template>
 
 <script setup>
-import { ref, defineExpose, onMounted } from 'vue';
+	import {
+		ref,
+		defineExpose,
+		onMounted
+	} from 'vue';
 
-const callback = ref(null);
-const popup = ref();
-const popText = ref();
+	const callback = ref(null);
+	const popup = ref();
+	const popText = ref();
 
-function openPop(tips) {
-	popText.value = tips;
-	popup.value.open('center');
-	return new Promise((resolve, reject) => {
-		callback.value = () => {
-			resolve();
-			popup.value.close();
-		};
+	function openPop(tips) {
+		popText.value = tips;
+		popup.value.open('center');
+		return new Promise((resolve, reject) => {
+			callback.value = () => {
+				resolve();
+				popup.value.close();
+			};
+		});
+	}
+
+	function submit() {
+		callback.value();
+	}
+	defineExpose({
+		callback,
+		openPop
 	});
-}
-
-function submit() {
-	callback.value();
-}
-defineExpose({
-	callback,
-	openPop
-});
 </script>
 
-<style scoped>
-.pop-box {
-	width: 190px;
-	padding: 10px 30px;
-	background-color: #fff;
-	border-radius: 6px 6px 0px 0px;
-}
+<style scoped lang="scss">
+	.pop-box {
+		width: 190px;
+		padding: 10px 30px;
+		background-color: #fff;
+		border-radius: 6px 6px 0px 0px;
+	}
 
-.pop-btn {
-	width: 100%;
-	background-color: #4cd964;
-	border-top-right-radius: 0;
-	border-top-left-radius: 0;
-}
+	.pop-btn {
+		width: 100%;
+		background-color: #4cd964;
+		border-top-right-radius: 0;
+		border-top-left-radius: 0;
+	}
 </style>
