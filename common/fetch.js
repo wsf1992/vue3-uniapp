@@ -43,3 +43,6 @@ export const signout = () => api.get('/v2/signout')
 
 // 
 export const avatar = file => api.uploadFile('/eus/v1/users/24/avatar', file)
+
+// 修改用户名
+export const changeUserName = params => api.post('/v2/changeusername', params)

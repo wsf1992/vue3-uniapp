@@ -8,8 +8,8 @@
 					</template>
 				</uni-list-item>
 				<uni-list-item showArrow title="用户名" :rightText="userForm.username" class="list-item" link
-					to="/pages/setusername/setusername" />
-				<uni-list-item showArrow title="收货地址" class="list-item" link to="/pages/address/address" />
+					to="/pages/profileInfo/setusername/setusername" />
+				<uni-list-item showArrow title="收货地址" class="list-item" link to="/pages/profileInfo/address/address" />
 			</uni-list>
 		</uni-section>
 		<uni-section class="title" title="账号绑定" titleFontSize="12px" titleColor="#666">
@@ -42,8 +42,10 @@
 	import {
 		ref,
 		reactive,
-		onMounted
 	} from 'vue';
+	import {
+		onShow
+	} from '@dcloudio/uni-app'
 	let userForm = reactive({
 		username: '',
 		mobile: '',
@@ -97,7 +99,7 @@
 			}
 		});
 	}
-	onMounted(() => {
+	onShow(() => {
 		getUser();
 	});
 </script>
