@@ -13,47 +13,51 @@
 	</view>
 </template>
 
-<script setup>
-	const props = defineProps({
-		user: Object
-	});
+<script setup lang="ts">
+interface Props {
+	user: Object;
+}
+const props = withDefaults(defineProps<Props>(), {
+	user: () => {
+		user_id: '';
+	}
+});
 
-	function jump() {
-		if (props.user.user_id) {
-			uni.navigateTo({
-				url: '/pages/profileInfo/profileInfo'
-			});
-		} else {
-			uni.navigateTo({
-				url: '/pages/login/login'
-			});
-	
+function jump(): void {
+	if (props.user.user_id) {
+		uni.navigateTo({
+			url: '/pages/profileInfo/profileInfo'
+		});
+	} else {
+		uni.navigateTo({
+			url: '/pages/login/login'
+		});
 	}
 }
 </script>
 
 <style scoped lang="scss">
-	.container {
-		/* border-top: 1px solid #fff; */
-		padding: 18px 16px;
-		background-color: #3190e8;
-		color: #fff;
-	}
+.container {
+	/* border-top: 1px solid #fff; */
+	padding: 18px 16px;
+	background-color: #3190e8;
+	color: #fff;
+}
 
-	.user {
-		width: 65px;
-		height: 65px;
-		border-radius: 50%;
-	}
+.user {
+	width: 65px;
+	height: 65px;
+	border-radius: 50%;
+}
 
-	.user-name {
-		font-size: 20px;
-		font-weight: 700;
-		margin-bottom: 4px;
-	}
+.user-name {
+	font-size: 20px;
+	font-weight: 700;
+	margin-bottom: 4px;
+}
 
-	.icon-shouji {
-		vertical-align: middle;
-		margin-right: 5px;
-	}
+.icon-shouji {
+	vertical-align: middle;
+	margin-right: 5px;
+}
 </style>
