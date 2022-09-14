@@ -1,4 +1,4 @@
-# test-ele-uniapp
+# vue3-uniapp
 
 该项目基于 `uni-app`框架，是通过 HBuilderX 创建的。
 

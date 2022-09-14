@@ -122,6 +122,20 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/profileInfo/address/add",
+			"style": {
+				"navigationBarTitleText": "新增地址",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profileInfo/address/addSearch",
+			"style": {
+				"navigationBarTitleText": "搜索地址",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
 	"subPackages": [{

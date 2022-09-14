@@ -12,6 +12,10 @@
 	justify-content: space-between;
 }
 
+.w-flex-jusify-center {
+	justify-content: center;
+}
+
 .w-flex-cross-center {
 	align-items: center
 }
