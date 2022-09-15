@@ -12,6 +12,9 @@ class Api {
 	get(url, params) {
 		return this.baseRequest(url, null, params)
 	}
+	delete(url, params) {
+		return this.baseRequest(url, 'DELETE', params)
+	}
 	post(url, params) {
 		return this.baseRequest(url, 'POST', params)
 	}

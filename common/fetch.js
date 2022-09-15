@@ -38,7 +38,7 @@ export const login = (params) => api.post('/v2/login', {
 // forget
 export const changePassword = params => api.post('/v2/changepassword', params)
 
-// 
+// 退出登录
 export const signout = () => api.get('/v2/signout')
 
 // 
@@ -46,3 +46,24 @@ export const avatar = file => api.uploadFile('/eus/v1/users/24/avatar', file)
 
 // 修改用户名
 export const changeUserName = params => api.post('/v2/changeusername', params)
+
+//新增地址
+export const address = (params) => api.post(`/v1/users/${params.user_id}/addresses`, {
+	...params,
+	poi_type: 0,
+	sex: 1,
+	tag: '公司',
+	tag_type: '4',
+})
+
+//搜索地址
+export const addressSearch = (params) => api.get('/v1/pois', {
+	type: 'nearby',
+	...params
+})
+
+// 获取地址
+export const getAddress = (user_id) => api.get(`/v1/users/${user_id}/addresses`)
+
+// 删除地址
+export const delAddress = (user_id, address_id) => api.delete(`/v1/users/${user_id}/addresses/${address_id}`)

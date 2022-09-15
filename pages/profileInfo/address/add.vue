@@ -17,19 +17,23 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
+import { onShow, onHide, onUnload } from '@dcloudio/uni-app';
+import { address } from '@/common/fetch.js';
 interface Form {
 	name: String;
 	address: String;
 	address_detail: String;
 	phone: String;
 	phone_bk: String;
+	geohash: String;
 }
 const formData: Form = reactive({
 	name: '',
 	address: '',
 	address_detail: '',
 	phone: '',
-	phone_bk: ''
+	phone_bk: '',
+	geohash: ''
 });
 const form = ref<InstanceType<typeof UniForms> | null>();
 const rules = {
@@ -93,9 +97,29 @@ const style = {
 
 function add(): void {
 	form.value.validate().then(res => {
-		console.log('表单数据信息：', res);
+		address({
+			user_id: uni.getStorageSync('user_id'),
+			...formData
+		}).then(res => {
+			if (res.data.status) uni.navigateBack();
+		});
 	});
 }
+
+onShow(() => {
+	const geohash = uni.getStorageSync('geohash');
+	const address = uni.getStorageSync('address');
+	if (geohash) formData.geohash = geohash;
+	if (address) formData.address = address;
+});
+onHide(() => {
+	uni.removeStorageSync('geohash');
+	uni.removeStorageSync('address');
+});
+onUnload(() => {
+	uni.removeStorageSync('geohash');
+	uni.removeStorageSync('address');
+});
 </script>
 
 <style lang="scss" scoped>
