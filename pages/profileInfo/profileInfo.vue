@@ -61,7 +61,10 @@ function logout() {
 		})
 		.then(() => {
 			signout().then(res => {
-				if (res.data.status === 1) uni.navigateBack();
+				if (res.data.status === 1) {
+					uni.removeStorageSync('user_id');
+					uni.navigateBack();
+				}
 			});
 		});
 }
