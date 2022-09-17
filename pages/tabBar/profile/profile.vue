@@ -2,7 +2,7 @@
 	<view>
 		<user :user="userForm"></user>
 		<user-data></user-data>
-		<serve></serve>
+		<serve :user="userForm.username"></serve>
 	</view>
 </template>
 
@@ -12,7 +12,7 @@ import UserData from './components/data.vue';
 import serve from './components/serve.vue';
 import { getUserInfo } from '@/common/fetch.js';
 import { reactive } from 'vue';
-
+import { useUserStore } from '@/store/pinia/index.js';
 import { onShow } from '@dcloudio/uni-app';
 
 let userForm = reactive({
@@ -22,6 +22,7 @@ let userForm = reactive({
 	avatar: ''
 });
 
+const userStore = useUserStore();
 function getUser() {
 	const local_user_id = uni.getStorageSync('user_id');
 	getUserInfo(local_user_id).then(res => {
@@ -30,11 +31,13 @@ function getUser() {
 			userForm.user_id = res.data.user_id;
 			userForm.username = res.data.username;
 			userForm.mobile = res.data.mobile;
+			userStore.setName(res.data.username);
 		} else {
 			userForm.avatar = 'default.jpg';
 			userForm.user_id = '';
 			userForm.username = '登录/注册';
 			userForm.mobile = '';
+			userStore.setName('');
 		}
 	});
 }

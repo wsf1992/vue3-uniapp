@@ -1,6 +1,6 @@
 <template>
 	<view class="mar-t-10">
-		<uni-list border>
+		<uni-list border v-if="addArray.length">
 			<template v-for="item of addArray" :key="item.city_id">
 				<uni-list-item :title="item.name" :note="item.address">
 					<template v-slot:footer>

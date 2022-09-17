@@ -24,8 +24,10 @@ app.$mount()
 import {
 	createSSRApp
 } from 'vue'
+import * as Pinia from 'pinia';
 export function createApp() {
 	const app = createSSRApp(App)
+	app.use(Pinia.createPinia());
 	app.use(store)
 	app.config.globalProperties.$adpid = "1111111111"
 	app.config.globalProperties.$backgroundAudioData = {
@@ -34,7 +36,8 @@ export function createApp() {
 		formatedPlayTime: '00:00:00'
 	}
 	return {
-		app
+		app,
+		Pinia
 	}
 }
 // #endif

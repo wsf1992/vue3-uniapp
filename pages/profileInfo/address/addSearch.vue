@@ -1,23 +1,21 @@
 <template>
-	<view class="vw-100 w-flex-column">
-		<scroll-view>
-			<view class="w-flex-row box w-flex-cross-center">
-				<uni-easyinput class="w-flex-auto input" v-model="keyword" focus placeholder="请输入小区/写字楼/学校等" @input="input"></uni-easyinput>
-				<button class="mini-btn" type="primary" size="mini" @click="search">确认</button>
-			</view>
-			<uni-notice-bar class="mar-b-0" single text="为了满足商家的送餐要求,建议您从列表中选择地址" />
-			<view class="w-flex-auto w-flex-column w-flex-cross-center tips-box w-flex-jusify-center" v-if="!addressList.length">
-				<text class="tips">找不到地址？</text>
-				<text class="tips">请尝试输入小区、写字楼或学校名</text>
-				<text class="tips">详细地址（如门牌号）可稍后输入哦。</text>
-			</view>
-			<uni-list v-else>
-				<template v-for="item of addressList" :key="item.geohash">
-					<uni-list-item :title="item.name" :note="item.address" class="address-item" clickable @click="backPage(item)" />
-				</template>
-			</uni-list>
-		</scroll-view>
-	</view>
+	<scroll-view class="w-flex-column">
+		<view class="w-flex-row box w-flex-cross-center">
+			<uni-easyinput class="w-flex-auto input" v-model="keyword" focus placeholder="请输入小区/写字楼/学校等" @input="input"></uni-easyinput>
+			<button class="mini-btn" type="primary" size="mini" @click="search">确认</button>
+		</view>
+		<uni-notice-bar class="mar-b-0" single text="为了满足商家的送餐要求,建议您从列表中选择地址" />
+		<view class="w-flex-auto w-flex-column w-flex-cross-center tips-box w-flex-jusify-center mar-t-10" v-if="!addressList.length">
+			<text class="tips">找不到地址？</text>
+			<text class="tips">请尝试输入小区、写字楼或学校名</text>
+			<text class="tips">详细地址（如门牌号）可稍后输入哦。</text>
+		</view>
+		<uni-list v-else>
+			<template v-for="item of addressList" :key="item.geohash">
+				<uni-list-item :title="item.name" :note="item.address" class="address-item" clickable @click="backPage(item)" />
+			</template>
+		</uni-list>
+	</scroll-view>
 </template>
 
 <script setup lang="ts">

@@ -4,7 +4,7 @@
 			<uni-forms-item name="name"><uni-easyinput type="text" class="input" :styles="style" v-model="formData.name" placeholder="请填写你的姓名" /></uni-forms-item>
 			<uni-forms-item name="address">
 				<navigator url="/pages/profileInfo/address/addSearch">
-					<uni-easyinput disabled type="text" class="input" v-model="formData.address" placeholder="小区/写字楼/学校等" />
+					<uni-easyinput type="text" class="input" v-model="formData.address" placeholder="小区/写字楼/学校等" :clearable="false" />
 				</navigator>
 			</uni-forms-item>
 			<uni-forms-item name="address_detail"><uni-easyinput type="text" class="input" v-model="formData.address_detail" placeholder="请填写详细送餐地址" /></uni-forms-item>

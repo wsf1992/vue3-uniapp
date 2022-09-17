@@ -67,3 +67,7 @@ export const getAddress = (user_id) => api.get(`/v1/users/${user_id}/addresses`)
 
 // 删除地址
 export const delAddress = (user_id, address_id) => api.delete(`/v1/users/${user_id}/addresses/${address_id}`)
+
+//服务中心
+
+export const profileExplain = () => api.get('/v3/profile/explain')
