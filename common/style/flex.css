@@ -13,7 +13,7 @@
 }
 
 .w-flex-jusify-center {
-	justify-content: center;
+	justify-content: center !important;
 }
 
 .w-flex-cross-center {
@@ -22,4 +22,8 @@
 
 .w-flex-auto {
 	flex: 1 1 auto;
+}
+
+.w-align-self-c {
+	align-self: center;
 }

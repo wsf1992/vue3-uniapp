@@ -136,17 +136,29 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/profile/service/details",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/vipcard/vipDescription/vipDescription",
+			"style": {
+				"navigationBarTitleText": "我的优惠",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/vipcard/payment/payment",
+			"style": {
+				"navigationBarTitleText": "在线支付",
+				"enablePullDownRefresh": false
+			}
+
 		}
-	    ,{
-            "path" : "pages/profile/service/details",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"subPackages": [{
 		"root": "pages/login",
 		"pages": [{

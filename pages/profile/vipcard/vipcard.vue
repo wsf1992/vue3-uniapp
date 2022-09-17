@@ -1,12 +1,18 @@
 <template>
 	<view>
-		<text>为账户{{ user.username }}购买会员</text>
-		<uni-section class="mb-10" title="会员特权">
-			<template v-slot:right>
-				<text class="c-999">会员说明 ></text>
-			</template>
-		</uni-section>
-		<uni-list>
+		<text class="title c-666">
+			为账户
+			<text class="f-w-700">{{ user.username }}</text>
+			购买会员
+		</text>
+		<navigator url="/pages/profile/vipcard/vipDescription/vipDescription" hover-class="none">
+			<uni-section title="会员特权">
+				<template v-slot:right>
+					<text class="c-999">会员说明 ></text>
+				</template>
+			</uni-section>
+		</navigator>
+		<uni-list class="m-b-15 block">
 			<uni-list-item
 				title="减免配送费"
 				note="每月减免30单,每日可减免30单,每单最高减4元
@@ -22,6 +28,34 @@
 				</template>
 			</uni-list-item>
 		</uni-list>
+		<uni-section title="开通会员"></uni-section>
+		<uni-list class="m-b-15 block">
+			<uni-list-item>
+				<template v-slot:header>
+					<text class="money">
+						一个月
+						<text class="color-red">￥20</text>
+					</text>
+				</template>
+				<template v-slot:footer>
+					<button type="warn" plain size="mini" @click="goPay">购买</button>
+				</template>
+			</uni-list-item>
+		</uni-list>
+		<uni-list class="m-b-15 block">
+			<uni-list-item title="兑换会员">
+				<template v-slot:footer>
+					<text class="c-999 f-s-14">使用卡号卡密 ></text>
+				</template>
+			</uni-list-item>
+		</uni-list>
+		<uni-list>
+			<uni-list-item title="购买记录">
+				<template v-slot:footer>
+					<text class="c-999 f-s-14">开发票 ></text>
+				</template>
+			</uni-list-item>
+		</uni-list>
 	</view>
 </template>
 
@@ -30,12 +64,37 @@ import { defineProps } from 'vue';
 import { useUserStore } from '@/store/pinia/index.js';
 
 const user = useUserStore();
+
+function goPay(): void {
+	uni.navigateTo({
+		url: '/pages/profile/vipcard/payment/payment'
+	});
+}
 </script>
 
 <style scoped lang="scss">
+.title {
+	line-height: 50px;
+	margin-left: 17px;
+}
 .left-icon {
 	width: 39px;
 	height: 43px;
 	margin-right: 15px;
+}
+.m-b-15 {
+	margin-bottom: 15px;
+}
+.money {
+	line-height: 31px;
+	.color-red {
+		color: red;
+		font-weight: 700;
+	}
+}
+.jg {
+	width: 100%;
+	height: 15px;
+	background-color: #f5f5f5;
 }
 </style>
