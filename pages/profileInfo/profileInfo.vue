@@ -44,7 +44,6 @@ const dialog = ref();
 function getUser() {
 	const local_user_id = uni.getStorageSync('user_id');
 	getUserInfo(local_user_id).then(res => {
-		console.log(111, res);
 		userForm.username = res.data.username;
 		userForm.mobile = res.data.mobile;
 		userForm.avatar = res.data.avatar;

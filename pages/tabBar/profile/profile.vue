@@ -32,12 +32,14 @@ function getUser() {
 			userForm.username = res.data.username;
 			userForm.mobile = res.data.mobile;
 			userStore.setName(res.data.username);
+			userStore.setId(res.data.user_id);
 		} else {
 			userForm.avatar = 'default.jpg';
 			userForm.user_id = '';
 			userForm.username = '登录/注册';
 			userForm.mobile = '';
 			userStore.setName('');
+			userStore.setId('');
 		}
 	});
 }

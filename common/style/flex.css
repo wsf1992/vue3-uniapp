@@ -16,8 +16,16 @@
 	justify-content: center !important;
 }
 
+.w-flex-jusify-end {
+	justify-content: flex-end;
+}
+
 .w-flex-cross-center {
 	align-items: center
+}
+
+.w-flex-cross-end {
+	align-items: flex-end;
 }
 
 .w-flex-auto {
@@ -26,4 +34,8 @@
 
 .w-align-self-c {
 	align-self: center;
+}
+
+.w-align-s-end {
+	align-self: flex-end;
 }

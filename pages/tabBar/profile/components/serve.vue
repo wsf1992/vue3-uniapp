@@ -6,7 +6,7 @@
 					<image src="../../../../static/phone.png" class="mar-r-10 phone"></image>
 				</template>
 			</uni-list-item>
-			<uni-list-item title="积分商城" showArrow class="list-item" link to="/pages/tabBar/order/order">
+			<uni-list-item title="积分商城" showArrow class="list-item" clickable @click="tips">
 				<template v-slot:header>
 					<image src="../../../../static/phone.png" class="mar-r-10 phone"></image>
 				</template>
@@ -31,10 +31,17 @@
 				</uni-list-item>
 			</uni-list>
 		</view>
+		<tips-pop ref="tipspop"></tips-pop>
 	</view>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from 'vue';
+const tipspop = ref<InstanceType<typeof TipsPop> | null>();
+function tips(): void {
+	tipspop.value.openPop('该功能暂未开通');
+}
+</script>
 
 <style lang="scss">
 .phone {

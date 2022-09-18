@@ -71,3 +71,19 @@ export const delAddress = (user_id, address_id) => api.delete(`/v1/users/${user_
 //服务中心
 
 export const profileExplain = () => api.get('/v3/profile/explain')
+
+//兑换会员
+export const bindVipCard = ({
+	number,
+	password,
+	user_id
+}) => api.post(`/member/v1/users/${user_id}/delivery_card/physical_card/bind`, {
+	number,
+	password
+})
+
+// 红包
+export const getHongbao = (user_id) => api.get(`/promotion/v2/users/${user_id}/hongbaos?limit=30&offset=0`)
+
+//历史红包
+export const gethbHistory = (user_id) => api.get(`/promotion/v2/users/${user_id}/expired_hongbaos?limit=20&offset=0`)

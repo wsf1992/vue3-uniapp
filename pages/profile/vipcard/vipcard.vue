@@ -38,19 +38,19 @@
 					</text>
 				</template>
 				<template v-slot:footer>
-					<button type="warn" plain size="mini" @click="goPay">购买</button>
+					<button type="warn" plain size="mini" @click="nextPage('/pages/profile/vipcard/payment/payment')">购买</button>
 				</template>
 			</uni-list-item>
 		</uni-list>
 		<uni-list class="m-b-15 block">
-			<uni-list-item title="兑换会员">
+			<uni-list-item title="兑换会员" clickable @click="nextPage('/pages/profile/vipcard/vipexchange/vipexchange')">
 				<template v-slot:footer>
 					<text class="c-999 f-s-14">使用卡号卡密 ></text>
 				</template>
 			</uni-list-item>
 		</uni-list>
 		<uni-list>
-			<uni-list-item title="购买记录">
+			<uni-list-item title="购买记录" clickable @click="nextPage('/pages/profile/vipcard/viprecord/viprecord')">
 				<template v-slot:footer>
 					<text class="c-999 f-s-14">开发票 ></text>
 				</template>
@@ -65,9 +65,9 @@ import { useUserStore } from '@/store/pinia/index.js';
 
 const user = useUserStore();
 
-function goPay(): void {
+function nextPage(url: String): void {
 	uni.navigateTo({
-		url: '/pages/profile/vipcard/payment/payment'
+		url: url
 	});
 }
 </script>

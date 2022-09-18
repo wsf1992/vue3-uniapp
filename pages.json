@@ -157,6 +157,76 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/profile/vipcard/viprecord/viprecord",
+			"style": {
+				"navigationBarTitleText": "购买记录",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/vipcard/vipexchange/vipexchange",
+			"style": {
+				"navigationBarTitleText": "兑换会员",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/balance/balance",
+			"style": {
+				"navigationBarTitleText": "余额",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/balance/detail/detail",
+			"style": {
+				"navigationBarTitleText": "余额问题",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/points/points",
+			"style": {
+				"navigationBarTitleText": "我的积分",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/points/detail/detail",
+			"style": {
+				"navigationBarTitleText": "积分问题",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/benefit/benefit",
+			"style": {
+				"navigationBarTitleText": "我的优惠",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/benefit/hbHistory/hbHistory",
+			"style": {
+				"navigationBarTitleText": "历史红包",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/benefit/hbDescription/hbDescription",
+			"style": {
+				"navigationBarTitleText": "红包说明",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/benefit/voucher/voucjerDescription/voucjerDescription",
+			"style": {
+				"navigationBarTitleText": "代金券说明",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
 	"subPackages": [{
