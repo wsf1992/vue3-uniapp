@@ -1,10 +1,10 @@
 <template>
 	<view class="container">
-		<uni-easyinput v-model="exchange_code" clearSize="20px" class="input bg-fff m-b-18" :inputBorder="false" placeholder="请输入兑换码"></uni-easyinput>
+		<view class="bg-fff m-b-18"><uni-easyinput v-model="exchange_code" class="input" :inputBorder="false" placeholder="请输入兑换码"></uni-easyinput></view>
 		<view class="w-flex-row">
-			<uni-easyinput v-model="captcha_code" clearSize="20px" class="input bg-fff" :inputBorder="false" placeholder="验证码"></uni-easyinput>
+			<uni-easyinput v-model="captcha_code" class="input bg-fff w-flex-auto" :inputBorder="false" placeholder="验证码" type="number"></uni-easyinput>
 			<view class="w-flex-row w-flex-cross-center bg-fff mar-l-10 cap-box">
-				<image :src="captcha" mode="scaleToFill" class="captcha w-flex-auto"></image>
+				<image :src="captcha" mode="scaleToFill" class="captcha"></image>
 				<view @click="getCapt">
 					<text>看不清</text>
 					<br />

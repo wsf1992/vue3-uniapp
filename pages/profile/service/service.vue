@@ -1,12 +1,12 @@
 <template>
 	<view class="container">
 		<view class="w-flex-row">
-			<view class="w-flex-auto head-box w-flex-column w-flex-cross-center" @click="tipsNo">
+			<view class="w-flex-auto head-box w-flex-column w-flex-cross-center" @click="tipsNo" hover-class="button-hover">
 				<uni-icons type="person-filled" size="24" color="#ff7b52"></uni-icons>
 				<text class="tips">在线客服</text>
 			</view>
 			<view class="border"></view>
-			<view class="w-flex-auto head-box w-flex-column w-flex-cross-center" @click="call">
+			<view class="w-flex-auto head-box w-flex-column w-flex-cross-center" @click="call" hover-class="button-hover">
 				<uni-icons type="phone-filled" size="24" color="#6bc20a"></uni-icons>
 				<text class="tips">在线客服</text>
 			</view>
