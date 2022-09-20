@@ -87,3 +87,14 @@ export const getHongbao = (user_id) => api.get(`/promotion/v2/users/${user_id}/h
 
 //历史红包
 export const gethbHistory = (user_id) => api.get(`/promotion/v2/users/${user_id}/expired_hongbaos?limit=20&offset=0`)
+
+//兑换红包
+
+export const exchangeHongbao = ({
+	user_id,
+	captcha_code,
+	exchange_code
+}) => api.post(`/v1/users/${user_id}/hongbao/exchange`, {
+	captcha_code,
+	exchange_code
+})

@@ -68,6 +68,7 @@ function loginHandle(): void {
 			if (res.data.type === 'ERROR_CAPTCHA') getCapt();
 			return tipspop.value.openPop(res.data.message);
 		} else {
+			uni.setStorageSync('user_id', res.data.user_id);
 			uni.navigateBack();
 		}
 	});

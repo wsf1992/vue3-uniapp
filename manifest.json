@@ -94,7 +94,8 @@
 		"appid": "wx520a955812ae4d07",
 		"setting": {
 			"urlCheck": false,
-			"es6": true
+			"es6": true,
+			"minified": false
 		},
 		"usingComponents": true,
 		"permission": {

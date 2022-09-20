@@ -13,6 +13,12 @@
 .c-333 {
 	color: #333;
 }
+.c-555 {
+	color: #555;
+}
+.c-ff5633 {
+	color: #ff5633;
+}
 .c-aaa {
 	color: #aaa;
 }
@@ -52,11 +58,15 @@
 .f-w-900 {
 	font-weight: 900;
 }
-
+.mar-t-5 {
+	margin-top: 5px;
+}
 .mar-t-10 {
 	margin-top: $px-10;
 }
-
+.mar-t-25 {
+	margin-top: 25px;
+}
 .mar-b-10 {
 	margin-bottom: $px-10;
 }
@@ -94,6 +104,12 @@
 }
 .pad-t-20 {
 	padding-top: 20px;
+}
+.pad-t-25 {
+	padding-top: 25px;
+}
+.pad-b-25 {
+	padding-bottom: 25px;
 }
 .pad-b-10 {
 	padding-bottom: 10px;

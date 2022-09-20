@@ -227,6 +227,20 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/profile/benefit/exchangePacket/exchangePacket",
+			"style": {
+				"navigationBarTitleText": "兑换红包",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/profile/benefit/recommend/recommend",
+			"style": {
+				"navigationBarTitleText": "推荐有奖",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
 	"subPackages": [{
