@@ -98,3 +98,6 @@ export const exchangeHongbao = ({
 	captcha_code,
 	exchange_code
 })
+
+//获取
+export const getCategory = params => api.get('/v2/index_entry', params)
