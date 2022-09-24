@@ -1,19 +1,25 @@
 <template>
-	<view>
+	<view class="box">
 		<swiper class="swiper bg-fff" circular indicator-dots indicator-active-color="#007aff">
 			<template v-for="(item, index) in list" :index="index">
 				<swiper-item><swiper-container :data="item"></swiper-container></swiper-item>
 			</template>
 		</swiper>
+		<view class="bg-fff header mar-t-10"><text class="c-999 f-s-14">附近商家</text></view>
+		<template v-for="item in shopList" :index="item.id">
+			<shop :data="item"></shop>
+		</template>
 	</view>
 </template>
 
 <script setup lang="ts">
 import swiperContainer from '@/pages/miste/swiper.vue';
-import { getCategory } from '@/common/fetch.js';
+import shop from '@/pages/miste/shop.vue';
+import { getCategory, getShop } from '@/common/fetch.js';
 import { onMounted, ref } from 'vue';
 
 const list = ref([]);
+const shopList = ref([]);
 function getList(): void {
 	getCategory({
 		group_type: 1,
@@ -34,13 +40,38 @@ function getList(): void {
 	});
 }
 
+function getShopList(): void {
+	getShop({
+		latitude: 31.22299,
+		longitude: 121.36025,
+		offset: 0,
+		limit: 20,
+		extras: 'activities',
+		keyword: '',
+		restaurant_category_id: '',
+		restaurant_category_ids: '',
+		order_by: '',
+		delivery_mode: ''
+	}).then(res => {
+		shopList.value = res.data;
+	});
+}
 onMounted(() => {
 	getList();
+	getShopList();
 });
 </script>
 
-<style>
-.swiper {
-	height: 206px;
+<style scoped lang="scss">
+.box {
+	margin-bottom: 50px;
+
+	.swiper {
+		height: 206px;
+	}
+	.header {
+		line-height: 41px;
+		padding-left: 14px;
+	}
 }
 </style>

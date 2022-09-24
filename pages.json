@@ -241,6 +241,27 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/miste/business/business",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/miste/business/detail/detail",
+			"style": {
+				"navigationBarTitleText": "商家详情",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/miste/business/detail/shopSafe/shopSafe",
+			"style": {
+				"navigationBarTitleText": "食品监督安全公示",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
 	"subPackages": [{

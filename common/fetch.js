@@ -99,5 +99,8 @@ export const exchangeHongbao = ({
 	exchange_code
 })
 
-//获取
+//获取品类
 export const getCategory = params => api.get('/v2/index_entry', params)
+
+//获取商家
+export const getShop = params => api.get('/shopping/restaurants', params)

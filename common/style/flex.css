@@ -16,6 +16,11 @@
 	justify-content: center !important;
 }
 
+.w-flex-jusify-around {
+	justify-content: space-around;
+
+}
+
 .w-flex-jusify-end {
 	justify-content: flex-end;
 }
