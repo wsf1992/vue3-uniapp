@@ -35,6 +35,9 @@
 .c-ff6000 {
 	color: #ff6000;
 }
+.c-f60 {
+	color: #f60;
+}
 .c-bbb {
 	color: #bbb;
 }
@@ -79,11 +82,17 @@
 .mar-b-7 {
 	margin-bottom: 7px;
 }
+.mar-b-5 {
+	margin-bottom: 5px;
+}
 .mar-b-10 {
 	margin-bottom: $px-10;
 }
 .mar-b-15 {
 	margin-bottom: 15px;
+}
+.mar-b-30 {
+	margin-bottom: 30px;
 }
 .text-center {
 	text-align: center;
@@ -95,6 +104,12 @@
 
 .mar-r-20 {
 	margin-right: 20px;
+}
+.mar-r-30 {
+	margin-right: 30px;
+}
+.mar-l-5 {
+	margin-left: 5px;
 }
 .mar-l-10 {
 	margin-left: 10px;

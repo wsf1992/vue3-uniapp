@@ -42,14 +42,22 @@
 				<uni-list-item title="商铺2"></uni-list-item>
 				<uni-list-item title="地址: 北京市朝阳区安贞路2号"></uni-list-item>
 				<uni-list-item title="营业时间: [8:30/20:30]"></uni-list-item>
-				<uni-list-item title="营业执照" showArrow></uni-list-item>
-				<uni-list-item title="餐饮服务许可证" showArrow></uni-list-item>
+				<uni-list-item title="营业执照" showArrow clickable @click="openPop"></uni-list-item>
+				<uni-list-item title="餐饮服务许可证" showArrow clickable @click="openPop"></uni-list-item>
 			</uni-list>
 		</view>
+		<uni-popup ref="popup"><image style="width: 100vw" src="http://120.48.75.81:8001/img/183724c92c840.jpeg" mode=""></image></uni-popup>
 	</view>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const popup = ref<InstanceType<typeof uniPopup> | null>();
+function openPop(): void {
+	popup.value.open();
+}
+
 function goSafe(): void {
 	uni.navigateTo({
 		url: '/pages/miste/business/detail/shopSafe/shopSafe'
