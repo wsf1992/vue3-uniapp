@@ -97,7 +97,9 @@
 .text-center {
 	text-align: center;
 }
-
+.mar-r-5 {
+	margin-right: 5px;
+}
 .mar-r-10 {
 	margin-right: $px-10;
 }
@@ -134,6 +136,9 @@
 }
 .pad-t-25 {
 	padding-top: 25px;
+}
+.pad-b-5 {
+	padding-bottom: 5px;
 }
 .pad-b-25 {
 	padding-bottom: 25px;

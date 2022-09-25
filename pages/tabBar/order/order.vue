@@ -1,22 +1,9 @@
 <template>
-	<view>
-		<text>订单列表</text>
-	</view>
+	<view><order-list></order-list></view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			
-		}
-	}
+<script setup lang="ts">
+import orderList from '@/pages/order/orderList.vue';
 </script>
 
-<style>
-
-</style>
+<style></style>
