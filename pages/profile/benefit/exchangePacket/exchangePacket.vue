@@ -18,30 +18,23 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue';
-import { getCaptcha, exchangeHongbao } from '@/common/fetch.js';
+import { ref, computed } from 'vue';
+import { exchangeHongbao } from '@/common/fetch.js';
 import { useUserStore } from '@/store/pinia/index.js';
+import { useCaptcha } from '@/common/composables/useCaptcha';
+
+const { captcha, getCapt } = useCaptcha();
 const exchange_code = ref('');
 const captcha_code = ref('');
 const user = useUserStore();
 const tipspop = ref();
 const active = computed(() => exchange_code.value.length && captcha_code.value.length === 4);
 
-const captcha = ref();
-function getCapt(): void {
-	getCaptcha().then(res => {
-		captcha.value = res.data.code;
-	});
-}
-
 function save(): void {
 	exchangeHongbao({ exchange_code: exchange_code.value, captcha_code: captcha_code.value, user_id: user.user_id }).then(res => {
 		tipspop.value.openPop(res.data.message);
 	});
 }
-onMounted(() => {
-	getCapt();
-});
 </script>
 
 <style lang="scss" scoped>

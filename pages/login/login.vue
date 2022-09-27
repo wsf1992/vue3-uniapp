@@ -31,16 +31,13 @@
 </template>
 
 <script setup lang="ts">
-import { getCaptcha, login } from '@/common/fetch.js';
-import { ref, onMounted, reactive } from 'vue';
-const captcha = ref<String>();
+import { login } from '@/common/fetch.js';
+import { ref, reactive } from 'vue';
+import { useCaptcha } from '@/common/composables/useCaptcha';
+
+const { captcha, getCapt } = useCaptcha();
 const tipspop = ref<InstanceType<typeof TipsPop> | null>(null);
 
-function getCapt(): void {
-	getCaptcha().then(res => {
-		captcha.value = res.data.code;
-	});
-}
 interface Form {
 	username: String;
 	password: String;
@@ -73,9 +70,6 @@ function loginHandle(): void {
 		}
 	});
 }
-onMounted(() => {
-	getCapt();
-});
 </script>
 
 <style scoped lang="scss">
