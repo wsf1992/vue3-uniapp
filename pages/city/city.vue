@@ -5,7 +5,10 @@
 				placeholder="输入学校 商务楼 地址"
 				focus
 				v-model="searchValue"
-				@clear="(searchValue = ''), search()"
+				@clear="
+					searchValue = '';
+					search();
+				"
 				clearButton="auto"
 				cancelButton="none"
 			></uni-search-bar>
@@ -13,7 +16,7 @@
 		</view>
 		<uni-list>
 			<template v-for="item in sList" :key="item.geohash">
-				<uni-list-item :title="item.name" :note="item.address" clickable />
+				<uni-list-item :title="item.name" :note="item.address" clickable @click="goMiste(item)" />
 			</template>
 		</uni-list>
 		<uni-card v-if="searchValue && !sList.length && !searchLoading" :is-shadow="false" is-full><text class="uni-h6">很抱歉！无搜索结果</text></uni-card>
@@ -24,6 +27,9 @@
 import { getCity, citySearch } from '@/common/fetch.js';
 import { ref, reactive, onMounted } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
+import { useUserStore } from '@/store/pinia/index.js';
+const user = useUserStore();
+
 const cityId = ref('');
 const searchValue = ref('');
 const searchLoading = ref(false);
@@ -60,6 +66,14 @@ function search() {
 			searchLoading.value = false;
 		});
 }
+
+function goMiste(item) {
+	user.setUser(item);
+	uni.switchTab({
+		url: '/pages/tabBar/miste/miste'
+	});
+}
+
 onMounted(() => {
 	getCityMsg();
 });

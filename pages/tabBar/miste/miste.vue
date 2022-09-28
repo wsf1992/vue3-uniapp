@@ -17,13 +17,15 @@ import swiperContainer from '@/pages/miste/swiper.vue';
 import shop from '@/pages/miste/shop.vue';
 import { getCategory, getShop } from '@/common/fetch.js';
 import { onMounted, ref } from 'vue';
+import { useUserStore } from '@/store/pinia/index.js';
+const user = useUserStore();
 
 const list = ref([]);
 const shopList = ref([]);
 function getList(): void {
 	getCategory({
 		group_type: 1,
-		geohash: '31.22299,121.36025',
+		geohash: user.geohash,
 		flags: ['F']
 	}).then(res => {
 		list.value = res.data.reduce(
