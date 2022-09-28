@@ -1,3 +1,7 @@
+import {
+	useUserStore
+} from '@/store/pinia/index.js';
+
 function formatTime(time) {
 	if (typeof time !== 'number' || time < 0) {
 		return time
@@ -66,8 +70,37 @@ var dateUtils = {
 	}
 };
 
+function getLocation() {
+	return new Promise(resolve => {
+		const userStore = useUserStore();
+		if (!userStore.geohash) {
+			uni.getLocation({
+				success: function(res) {
+					userStore.setUser({
+						geohash: `${res.latitude},${res.longitude}`,
+						latitude: res.latitude,
+						longitude: res.longitude
+					})
+					resolve()
+				},
+				fail: function() {
+					userStore.setUser({
+						geohash: '31.22299,121.36025',
+						latitude: '31.22299',
+						longitude: '121.36025'
+					})
+					resolve()
+				}
+			});
+		} else {
+			resolve()
+		}
+	})
+
+}
 export {
 	formatTime,
 	formatLocation,
-	dateUtils
+	dateUtils,
+	getLocation
 }

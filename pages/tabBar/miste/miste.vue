@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import swiperContainer from '@/pages/miste/swiper.vue';
 import shop from '@/pages/miste/shop.vue';
-import { getCategory, getShop } from '@/common/fetch.js';
+import { getCategory, getShop, getTailByPois } from '@/common/fetch.js';
 import { onMounted, ref } from 'vue';
 import { useUserStore } from '@/store/pinia/index.js';
 const user = useUserStore();
@@ -25,7 +25,6 @@ const shopList = ref([]);
 function getList(): void {
 	getCategory({
 		group_type: 1,
-		geohash: user.geohash,
 		flags: ['F']
 	}).then(res => {
 		list.value = res.data.reduce(
@@ -44,8 +43,6 @@ function getList(): void {
 
 function getShopList(): void {
 	getShop({
-		latitude: 31.22299,
-		longitude: 121.36025,
 		offset: 0,
 		limit: 20,
 		extras: 'activities',
@@ -58,7 +55,14 @@ function getShopList(): void {
 		shopList.value = res.data;
 	});
 }
+
+function getAddress(): void {
+	getTailByPois().then(res => {
+		uni.setNavigationBarTitle({ title: res.data.name });
+	});
+}
 onMounted(() => {
+	getAddress();
 	getList();
 	getShopList();
 });

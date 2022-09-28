@@ -3,9 +3,13 @@
  **/
 import api from './api.js'
 import {
+	getLocation
+} from '@/common/util.js'
+
+import {
 	useUserStore
 } from '@/store/pinia/index.js';
-
+const userStore = useUserStore();
 // home
 export const getGuessCity = () => api.get('/v1/cities', {
 	type: 'guess'
@@ -18,7 +22,7 @@ export const getGroupCity = () => api.get('/v1/cities', {
 })
 export const getUserInfo = async () => {
 	const user_id = uni.getStorageSync('user_id');
-	const userStore = useUserStore();
+
 	const result = await api.get('/v1/user', {
 		user_id
 	})
@@ -114,7 +118,26 @@ export const exchangeHongbao = ({
 })
 
 //获取品类
-export const getCategory = params => api.get('/v2/index_entry', params)
+export const getCategory = async params => {
+	await getLocation()
+	return api.get('/v2/index_entry', {
+		geohash: userStore.geohash,
+		...params
+	})
+}
 
 //获取商家
-export const getShop = params => api.get('/shopping/restaurants', params)
+export const getShop = async params => {
+	await getLocation()
+	return api.get('/shopping/restaurants', {
+		latitude: userStore.latitude,
+		longitude: userStore.longitude,
+		...params
+	})
+}
+
+// 获取定位详情
+export const getTailByPois = async () => {
+	await getLocation()
+	return api.get(`/v2/pois/${userStore.geohash}`)
+}
