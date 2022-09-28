@@ -59,8 +59,7 @@ import { onShow } from '@dcloudio/uni-app';
 const user_id = ref('');
 
 function getUser() {
-	const local_user_id = uni.getStorageSync('user_id');
-	getUserInfo(local_user_id).then(res => {
+	getUserInfo().then(res => {
 		if (res.data.user_id) user_id.value = res.data.user_id;
 	});
 }

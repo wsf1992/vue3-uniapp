@@ -42,12 +42,10 @@ const tipspop = ref();
 const dialog = ref();
 
 function getUser() {
-	const local_user_id = uni.getStorageSync('user_id');
-	getUserInfo(local_user_id).then(res => {
+	getUserInfo().then(res => {
 		userForm.username = res.data.username;
 		userForm.mobile = res.data.mobile;
 		userForm.avatar = res.data.avatar;
-		if (!local_user_id) uni.setStorageSync('user_id', res.data.user_id);
 	});
 }
 

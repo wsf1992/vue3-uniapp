@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import HongBao from '../../components/hongbao.vue';
+import hongBao from '../../components/hongbao.vue';
 import { useUserStore } from '@/store/pinia/index.js';
 import { gethbHistory } from '@/common/fetch.js';
 const list = ref([]);

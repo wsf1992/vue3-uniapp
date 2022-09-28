@@ -17,18 +17,18 @@ export const useServeStore = defineStore('serve', {
 })
 
 export const useUserStore = defineStore('user', {
-	state: () => {
-		return {
-			username: '',
-			user_id: ''
-		}
-	},
+	state: () => ({
+		username: '',
+		user_id: ''
+	}),
 	actions: {
-		setName(name) {
-			this.username = name
-		},
-		setId(id) {
-			this.user_id = id
-		},
+		setUser(params) {
+			if (params) {
+				if (params.username) this.username = params.username
+				if (params.user_id) this.user_id = params.user_id
+			} else {
+				this.$reset()
+			}
+		}
 	}
 })

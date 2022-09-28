@@ -2,6 +2,9 @@
  *	这里定义 所有请求的接口
  **/
 import api from './api.js'
+import {
+	useUserStore
+} from '@/store/pinia/index.js';
 
 // home
 export const getGuessCity = () => api.get('/v1/cities', {
@@ -13,9 +16,20 @@ export const getHot = () => api.get('/v1/cities', {
 export const getGroupCity = () => api.get('/v1/cities', {
 	type: 'group'
 })
-export const getUserInfo = user_id => api.get('/v1/user', {
-	user_id
-})
+export const getUserInfo = async () => {
+	const user_id = uni.getStorageSync('user_id');
+	const userStore = useUserStore();
+	const result = await api.get('/v1/user', {
+		user_id
+	})
+	if (result.data.user_id) {
+		userStore.setUser(result.data);
+		if (!user_id) uni.setStorageSync('user_id', result.data.user_id);
+	} else {
+		userStore.setUser();
+	}
+	return result
+}
 
 //city
 export const getCity = params => {
