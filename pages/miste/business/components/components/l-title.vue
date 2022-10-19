@@ -1,13 +1,17 @@
 <template>
 	<view class="l-titile w-flex-row w-flex-cross-center" :class="{ active: active }">
-		<image class="icon" src="https://fuss10.elemecdn.com/5/da/3872d782f707b4c82ce4607c73d1ajpeg.jpeg" mode=""></image>
-		<text class="f-s-15 c-666 f-w-700">12312</text>
+		<image class="icon" :src="`https://fuss10.elemecdn.com${getPath(icon_url)}`" mode=""></image>
+		<text class="f-s-15 c-666 f-w-700">{{ name }}</text>
 	</view>
 </template>
 
 <script lang="ts" setup>
 import { defineProps } from 'vue';
+import { getPath } from '@/common/util.js';
+
 defineProps({
+	name: String,
+	icon_url: String,
 	active: Boolean
 });
 </script>

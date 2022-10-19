@@ -1,15 +1,17 @@
 <template>
 	<view class="food-box bg-fff w-flex-row">
-		<image class="left-pic" src="http://120.48.75.81:8001/img/182c9ccf52912.png" mode=""></image>
+		<image class="left-pic" :src="`http://120.48.75.81:8001/img/${fillData.image_path}`" mode=""></image>
 		<view class="w-flex-column mar-l-10 w-flex-auto">
-			<text class="f-s-17 c-333 f-w-700">食品1</text>
-			<text class="f-s-12 c-999">食品1</text>
-			<text class="f-s-12 c-333 l-h-25">月售483份 好评率40%</text>
-			<view class="w-flex-row"><text class="c-f1884f food-activity">10-5</text></view>
+			<text class="f-s-17 c-333 f-w-700">{{ fillData.name }}</text>
+			<text class="f-s-12 c-999">{{ fillData.description }}</text>
+			<text class="f-s-12 c-333 l-h-25">{{ fillData.tips }}</text>
+			<view class="w-flex-row">
+				<text class="food-activity">{{ fillData.activity.image_text }}</text>
+			</view>
 			<view class="w-flex-row w-flex-jusify-between mar-t-10">
 				<view class="c-f60">
 					<text class="f-s-12">¥</text>
-					<text class=" f-s-17 f-w-700">22</text>
+					<text class=" f-s-17 f-w-700">{{ fillData.specfoods[0].price }}</text>
 				</view>
 				<uni-icons type="plusempty" size="19" color="#fff" class="w-align-s-end plus-icon"></uni-icons>
 			</view>
@@ -17,7 +19,28 @@
 	</view>
 </template>
 
-<script></script>
+<script lang="ts" setup>
+import { defineProps, ref, computed } from 'vue';
+interface Activity {
+	icon_color: String;
+	image_text: String;
+	image_text_color: String;
+}
+interface FillData {
+	name: String;
+	description: String;
+	tips: String;
+	image_path: String;
+	activity: Activity;
+	specfoods: Array;
+}
+const props = defineProps({
+	fillData: Object
+});
+const color = computed<String>(() => `#${props.fillData.activity.image_text_color}`);
+const bcolor = computed<String>(() => `#${props.fillData.activity.icon_color}`);
+console.log(111, color.value);
+</script>
 
 <style lang="scss" scoped>
 .food-box {
@@ -29,7 +52,8 @@
 	}
 	.food-activity {
 		display: block;
-		border: 1px solid #f07373;
+		color: v-bind('color');
+		border: 1px solid v-bind('bcolor');
 		border-radius: 50%;
 	}
 	.plus-icon {

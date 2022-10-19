@@ -141,3 +141,6 @@ export const getTailByPois = async () => {
 	await getLocation()
 	return api.get(`/v2/pois/${userStore.geohash}`)
 }
+
+// 获取商铺menu
+export const getShopMenu = (restaurant_id) => api.get(`/shopping/v2/menu?restaurant_id=${restaurant_id}`)
