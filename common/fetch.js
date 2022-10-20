@@ -135,6 +135,15 @@ export const getShop = async params => {
 		...params
 	})
 }
+//获取商铺详情
+export const getShopDetails = async (shopid) => {
+	await getLocation()
+	return api.get(`/shopping/restaurant/${shopid}`, {
+		latitude: userStore.latitude,
+		longitude: userStore.longitude +
+			'&extras[]=activities&extras[]=album&extras[]=license&extras[]=identification&extras[]=statistics'
+	})
+}
 
 // 获取定位详情
 export const getTailByPois = async () => {

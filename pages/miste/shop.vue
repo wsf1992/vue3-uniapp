@@ -1,5 +1,5 @@
 <template>
-	<view class="container w-flex-row bg-fff" @click="jump">
+	<view class="container w-flex-row bg-fff" @click="jump(data.id)">
 		<image class="header-img w-align-self-c" :src="`http://120.48.75.81:8001/img/${data.image_path}`" mode=""></image>
 		<view class="content w-flex-column mar-l-10 w-flex-jusify-around">
 			<view>
@@ -47,9 +47,9 @@ const onTime = computed(() => {
 	}
 });
 
-function jump(): void {
+function jump(id): void {
 	uni.navigateTo({
-		url: '/pages/miste/business/business'
+		url: `/pages/miste/business/business?id=${id}`
 	});
 }
 </script>

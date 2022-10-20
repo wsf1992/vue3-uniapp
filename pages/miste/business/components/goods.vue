@@ -6,7 +6,8 @@
 			</template>
 		</view>
 		<view class="r-content w-flex-auto">
-			<scroll-view scroll-y="true" id="scroll-box" :style="`height: ${boxHeight}px`" :scroll-top="scrollTop" @scroll="scroll">
+			<scroll-view scroll-with-animation scroll-y="true" id="scroll-box" :style="`height: ${boxHeight}px`" :scroll-top="scrollTop" @scroll="scroll">
+				<view id="baseview">21321321</view>
 				<template v-for="(item, index) in menuArray" :key="item.id">
 					<right-contain-header :name="item.name" :description="item.description" :id="item.name"></right-contain-header>
 					<template v-for="(f, index) in item.foods" :key="'food' + f.id">
@@ -29,20 +30,26 @@ const curIndex = ref(0);
 const scrollTop = ref(100);
 const oldScrollTop = ref(0);
 function scroll(e) {
-	console.log(123, e.detail.scrollTop);
 	oldScrollTop.value = e.detail.scrollTop;
 }
 function get(tar, id) {
 	curIndex.value = tar;
-	// scrollTop.value = oldScrollTop.value;
-	// nextTick(() => {
-	// 	scrollTop.value = 0;
-	// });
+
 	const query = uni.createSelectorQuery();
 	query
-		.select(`#${id}`)
+		.select('#baseview')
 		.boundingClientRect(data => {
-			console.log(111, data);
+			const boxTop = data.top;
+			const query1 = uni.createSelectorQuery();
+			query1
+				.select(`#${id}`)
+				.boundingClientRect(data => {
+					scrollTop.value = oldScrollTop.value;
+					nextTick(() => {
+						scrollTop.value = data.top - boxTop;
+					});
+				})
+				.exec();
 		})
 		.exec();
 }

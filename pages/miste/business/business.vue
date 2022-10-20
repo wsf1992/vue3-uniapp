@@ -1,6 +1,6 @@
 <template>
 	<view class="">
-		<header-part></header-part>
+		<header-part v-bind="detailData"></header-part>
 		<uni-segmented-control class="bg-fff segmented" :current="current" :values="['商品', '评价']" style-type="text" :active-color="activeColor" @clickItem="onClickItem" />
 		<view class="border-b"></view>
 		<template v-if="current === 0">
@@ -13,8 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import { onShow } from '@dcloudio/uni-app';
+import { onShow, onLoad } from '@dcloudio/uni-app';
 import { ref } from 'vue';
+import { getShopDetails } from '@/common/fetch.js';
+
 import headerPart from './components/header.vue';
 import goods from './components/goods.vue';
 import evaluate from './components/evaluate.vue';
@@ -26,10 +28,17 @@ function onClickItem(e: Event): void {
 	}
 }
 
-onShow(() => {
-	uni.setNavigationBarTitle({
-		title: '商铺2'
+const detailData = ref({});
+function shopDeail(id) {
+	getShopDetails(id).then(res => {
+		detailData.value = res.data;
+		uni.setNavigationBarTitle({
+			title: detailData.value.name
+		});
 	});
+}
+onLoad(option => {
+	shopDeail(option.id);
 });
 </script>
 
